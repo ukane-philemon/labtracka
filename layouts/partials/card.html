@@ -1,0 +1,9 @@
+<div class="max-w-md mt-5 pb-3 mx-auto rounded-2xl shadow-lg bg-gray-900">
+    <img class="w-full rounded-t-lg" src="{{ .Image}}" alt="{{.Heading}}">
+    <div class="px-6 py-4">
+        <div class="font-bold text-xl my-3">{{.Heading}}</div>
+        {{ range .Content }}
+         <p class="mt-2">{{.text | safeHTML }}</p>
+        {{end}}
+    </div>
+</div>

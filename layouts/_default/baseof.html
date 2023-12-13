@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ .Language.Lang }}">
+
+<head>
+    {{ partial "head.html" . }}
+</head>
+
+<body class="h-screen bg-zinc-100 dark:bg-gray-800">
+    {{if .IsHome}}
+    <div class="fixed min-h-screen z-3 bottom-0 top-0 invisible 2xl:visible">
+        <video autoplay="true" loop disablepictureinpicture disableremoteplayback muted>
+            <source src="/images/worldspin.mp4" type="video/mp4" />
+
+        </video>
+    </div>
+    {{end}}
+    <div class="relative">
+        {{ partial "nav.html" . }}
+        {{ block "main" . }}{{ end }}
+        {{ partial "footer" . }}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+baseURL: ''
+title: LabTracka
+languageCode: en-us
+DefaultContentLanguage: en
+enableEmoji: true
+enableGitInfo: false
+enableRobotsTXT: true
+canonifyURLs: true
+paginate: 9
+darkmode_js:
+  - assets/js/darkmode.js
+enableInlineShortcodes: true
+
+markup:
+  goldmark:
+    extensions:
+      definitionList: true
+      footnote: true
+      linkify: true
+      linkifyProtocol: https
+      strikethrough: true
+      table: true
+      taskList: true
+      typographer:
+        apostrophe: '&rsquo;'
+        disable: false
+        ellipsis: '&hellip;'
+        emDash: '&mdash;'
+        enDash: '&ndash;'
+        leftAngleQuote: '&laquo;'
+        leftDoubleQuote: '&ldquo;'
+        leftSingleQuote: '&lsquo;'
+        rightAngleQuote: '&raquo;'
+        rightDoubleQuote: '&rdquo;'
+        rightSingleQuote: '&rsquo;'
+    parser:
+      attribute:
+        block: false
+        title: true
+      autoHeadingID: true
+      autoHeadingIDType: github
+      wrapStandAloneImageWithinParagraph: true
+    renderer:
+      hardWraps: false
+      unsafe: true
+      xhtml: false
+
+params:
+  author: Philemon Ukane
+  #authorimage: ../assets/images/global/author.webp
+  #og_image: ../assets/images/pages/bg-gif.gif
+  moto: "Modern, Flexible, Convenient"
+  description: "An innovative solution for Modern Medical Laboratories, Patients and Companies, revolutionizing Medical Lab test experience."
+  disable_theme_toggle: false
+  disable_stay_uptodate: false
+  secondHeader: "For Medical Laboratories, Patients, and Companies"
+
+  c1: 
+    heading: "Medical laboratories"
+    image: /images/medical_lab.jpg
+    content:
+      - text: "Establish online presence through a unified platform."
+      - text: "Provide online tests, packages, results, and home sample collection."
+      - text: "No platform building/maintenance costs."
+  c2:
+    heading: "Patients"
+    image: /images/patients.jpg
+    content:
+      - text: "Find budget-friendly labs."
+      - text: "Order lab tests online, conveniently from anywhere."
+      - text: "Get accurate results online."
+      - text: "Test at accredited and certified labs."
+  c3:
+    heading: "Companies"
+    image: /images/business_people.jpg
+    content:
+      - text: "Centralize employee health assurance."
+      - text: "Easily mass-test all employees."
+      - text: "Demonstrate employee care."
+      - text: "Cut costs, and test staff at accredited labs."
+
+  p5:
+    heading: "Join the Waitlist"
+    content: 
+      - text: "LabTracka is a game-changing solution that brings together medical laboratories, patients, and companies on a single, user-friendly platform. Imagine offering and enjoying seamless medical lab services, all from the convenience of your home."
+      - text: "By joining our wait list, you'll be among the first to experience the future of medical laboratory services. Don't miss out on the opportunity to be part of this innovative journey. Sign up today, and let LabTracka transform the way we approach healthcare services!"
+      - text: "<b>Medical Laboratories</b><br> With LabTracka, you can providing a seamless experience for your customers, and reach new customers nationwide."
+      - text: "<b>For Patients</b><br> With LabTracka, you'll enjoy a flawless Medical test experience from order booking, sample collection, down to when you receive  your results in your mobile device. Your Test, Your Time, Your Place, never again should you walk to and fro the Lab TWICE!"
+      - text: "<b>For Companies</b><br> With LabTracka, you can show your employees that you care about their personal health. Let's help you simplify the process."
+      - text: "🚀 Ready to join the revolutionized way medical laboratories operate and enhance patient experiences? <b>Join the LabTracka wait list now! 🌐</b>"
+    button: "Get Early Access"
+
+  social_media:
+    github:
+      enabled: false
+      # url: 'https://github.com/nusserstudios'
+    facebook:
+      enabled: false
+      # url: 'https://facebook.com/nusserstudios'
+    instagram:
+      enabled: false
+      # url: 'https://instagram.com/nusserstudios'
+    twitter:
+      enabled: false
+      # url: '@labtracka'
+    
+
+menu:
+  main:
+    - identifier: waitlist
+      name: Join Waitlist
+      url: /waitlist/
+      weight: 50
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+taxonomies:
+  category: Categories
+  tag: Tags
+
+privacy:
+  disqus:
+    disable: true
+  googleAnalytics:
+    anonymizeIP: true
+    disable: true
+    respectDoNotTrack: true
+    useSessionStorage: false
+  instagram:
+    disable: true
+    simple: true
+  twitter:
+    disable: false
+    enableDNT: false
+    simple: false
+  vimeo:
+    disable: true
+    enableDNT: false
+    simple: false
+  youtube:
+    disable: true
+    privacyEnhanced: true
+
+module:
+  hugoVersion:
+    extended: true
+    min: "0.104.0"
