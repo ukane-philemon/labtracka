@@ -13,7 +13,7 @@ description: ''
       <p class="mb-8 font-light text-center text-gray-500 lg:mb-16 dark:text-gray-400 sm:text-xl">
       We are building the next innovative solution for Medical Laboratories, Patients and Companies. Join the wait list now, you'll be the first to know when we launch!
      </p>
-      <form name="contact" action="https://formsubmit.co/philemon@labtracka.com" method="POST" class="space-y-6">
+      <form name="contact" action="https://formsubmit.co/labtracka@gmail.com" method="POST" class="space-y-6">
           <div class="my-4">
               <label for="email" class="block mb-2 font-medium text-gray-900 text-md dark:text-gray-300"><strong>Your Email:</strong></label>
               <input type="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 dark:shadow-sm-light" placeholder="name@example.com" required>
