@@ -8,6 +8,11 @@
 <link rel="mask-icon" href="/favicon/labtracka_logo.png" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
+{{ with .Params.relcanonical }}
+<link rel="canonical" href="{{ . | relLangURL }}" itemprop="url" />
+{{ else -}}
+<link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
+{{ end -}}
 {{ partial "meta" . }}
 <script>
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
