@@ -1,10 +1,13 @@
-name = "TailBliss"
-license = "Apache-2.0"
-licenselink = "https://github.com/nusserstudios/tailbliss/blob/main/LICENSE"
+name = "LabTracka"
 description = "An innovative solution for Modern Medical Laboratories, Patients and Companies, revolutionizing Medical Lab test experience."
 
 # The home page of the theme, where the source can be found.
 homepage = "https://github.com/ukane-philemon/labtracka"
+
+og_image = /images/labtracka.jpeg
+
+[params]
+description = "An innovative solution for Modern Medical Laboratories, Patients and Companies, revolutionizing Medical Lab test experience."
 
 # If you have a running demo of the theme.
 demosite = "https://tailbliss.netlify.app/"

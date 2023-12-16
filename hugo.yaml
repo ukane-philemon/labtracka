@@ -48,10 +48,10 @@ markup:
 params:
   author: Philemon Ukane
   #authorimage: ../assets/images/global/author.webp
-  #og_image: ../assets/images/pages/bg-gif.gif
   moto: "Modern, Flexible, Convenient"
   description: "An innovative solution for Modern Medical Laboratories, Patients and Companies, revolutionizing Medical Lab test experience."
   disable_theme_toggle: false
+  og_image: /images/labtracka.jpeg
   disable_stay_uptodate: false
   secondHeader: "For Medical Laboratories, Patients, and Companies"
 

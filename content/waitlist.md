@@ -3,7 +3,8 @@ title: Join the Waitlist
 date: 2023-12-12T03:10:36.000Z
 draft: false
 language: en
-description: ''
+description: "We are building the next innovative solution for Medical Laboratories, Patients and Companies. Join the wait list now, you'll be the first to know when we launch!"
+featured_image: /images/labtracka.jpeg
 ---
 
 <!-- @format -->
