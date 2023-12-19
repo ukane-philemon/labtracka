@@ -1,4 +1,4 @@
-baseURL: ''
+baseURL: 'https://labtracka.com'
 title: LabTracka
 languageCode: en-us
 DefaultContentLanguage: en
