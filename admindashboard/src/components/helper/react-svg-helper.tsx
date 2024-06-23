@@ -6,7 +6,7 @@ interface Parameter {
   margin?: string;
   src: string;
   width?: number;
-};
+}
 
 export const ReactSVGHelper = ({
   color = 'black',

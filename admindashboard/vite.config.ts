@@ -12,7 +12,11 @@ export default defineConfig({
       "@assets": resolve(root, "assets"),
       "@components": resolve(root, "components"),
       "@interface": resolve(root, "interface"),
-      "@layout": resolve(root, "layout"),
+      "@layouts": resolve(root, "layouts"),
+      "@pages": resolve(root, "pages"),
+      "@mock": resolve(root, "mock"),
+      "@router": resolve(root, "router"),
+      "@utils": resolve(root, "utils"),
     }
   }
 })

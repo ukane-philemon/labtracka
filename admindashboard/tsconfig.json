@@ -22,6 +22,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
+
       "@assets/*": [
         "./src/assets/*"
       ],
@@ -31,10 +32,23 @@
       "@interface": [
         "./src/interface"
       ],
-      "@layouts": [
-        "./src/layouts"
+      "@layouts/*": [
+        "./src/layouts/*"
+      ],
+      "@mock": [
+        "./src/mock"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@router": [
+        "./src/router"
+      ],
+      "@utils": [
+        "./src/utils"
       ]
     },
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src"
