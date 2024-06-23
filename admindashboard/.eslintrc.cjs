@@ -41,6 +41,7 @@ module.exports = {
     "no-param-reassign": 0,
     "no-promise-executor-return": 0,
     "no-restricted-exports": 0,
+    "no-shadow": 0,
     "no-underscore-dangle": 0,
     "no-use-before-define": 0,
     "react/forbid-prop-types": 0,
