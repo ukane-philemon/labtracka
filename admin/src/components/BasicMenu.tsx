@@ -17,7 +17,7 @@ export default function BasicMenu() {
   };
 
   return (
-    <Box sx={{margin: 'auto'}}>
+    <Box>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}

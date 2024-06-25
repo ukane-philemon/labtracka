@@ -14,20 +14,17 @@ import ResponsiveGrid from './ResponsiveGrid';
 import BoxBasic from './BoxBasic';
 import BasicMenu from './BasicMenu';
 import EnhancedTable from './EnhancedTable';
-import { ReactComponent as DashboardIcon } from "../assets/Home.svg";
-import { ReactComponent as TestIcon } from '../assets/test.svg';
-import { ReactComponent as OrderIcon } from '../assets/order.svg';
-import { ReactComponent as ResultIcon } from '../assets/result.svg';
-import { ReactComponent as PaymentIcon } from '../assets/wallet.svg';
-import { ReactComponent as SettingsIcon } from '../assets/settings.svg';
+import FooterPagination from './FooterPagination';
+import RequestButton from './RequestButton';
+import SvgIconComponent from './SvgIconComponent';
 
-const iconMap: { [key: string]: React.ElementType } = {
-  dashboard: DashboardIcon,
-  test: TestIcon,
-  order: OrderIcon,
-  result: ResultIcon,
-  payment: PaymentIcon,
-  settings: SettingsIcon,
+const iconMap: { [key: string]: string } = {
+  dashboard: "../assets/Home.svg",
+  test: "../assets/test.svg",
+  order: "../assets/order.svg",
+  result: "../assets/result.svg",
+  payment: "../assets/wallet.svg",
+  settings: "../assets/settings.svg",
 };
 
 // Define a styled component for ListItemText to adjust typography
@@ -52,7 +49,7 @@ export default function TemporaryDrawer() {
           <ListItem key={link.key}>
             <ListItemButton component='a' href={link.href}  >
               <ListItemIcon>
-                {React.createElement(iconMap[link.key], { width: 22, height: 22 })} we will come back to this
+                  <SvgIconComponent src={iconMap[link.key]} width={22} height={22} />
               </ListItemIcon>
               <StyledListItemText primary={link.label}/>
             </ListItemButton>
@@ -88,9 +85,15 @@ export default function TemporaryDrawer() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 , background: '#F1F4F9'}}>
         {/* Main content goes here */}
         <BoxBasic />
-        <BasicMenu />
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+          <BasicMenu />
+        </Box>
         <ResponsiveGrid />
         <EnhancedTable />
+         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+          <RequestButton />
+        </Box>
+        <FooterPagination />
       </Box>
     </Box>
   );
