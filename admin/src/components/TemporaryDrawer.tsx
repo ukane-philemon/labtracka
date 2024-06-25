@@ -13,24 +13,22 @@ import { styled } from '@mui/material/styles'; // Import styled from MUI styles
 import ResponsiveGrid from './ResponsiveGrid';
 import BoxBasic from './BoxBasic';
 import BasicMenu from './BasicMenu';
+import EnhancedTable from './EnhancedTable';
+import { ReactComponent as DashboardIcon } from "../assets/Home.svg";
+import { ReactComponent as TestIcon } from '../assets/test.svg';
+import { ReactComponent as OrderIcon } from '../assets/order.svg';
+import { ReactComponent as ResultIcon } from '../assets/result.svg';
+import { ReactComponent as PaymentIcon } from '../assets/wallet.svg';
+import { ReactComponent as SettingsIcon } from '../assets/settings.svg';
 
-// Import SVGs as React components
-
-// import { ReactComponent as DashboardIcon } from "Home.svg";
-// import { ReactComponent as TestIcon } from '../public/icons/test.svg';
-// import { ReactComponent as OrderIcon } from '../public/icons/order.svg';
-// import { ReactComponent as ResultIcon } from '../public/icons/result.svg';
-// import { ReactComponent as PaymentIcon } from '../public/icons/wallet.svg';
-// import { ReactComponent as SettingsIcon } from '../public/icons/settings.svg';
-
-// const iconMap: { [key: string]: React.ElementType } = {
-//   dashboard: DashboardIcon,
-//   test: TestIcon,
-//   order: OrderIcon,
-//   result: ResultIcon,
-//   payment: PaymentIcon,
-//   settings: SettingsIcon,
-// };
+const iconMap: { [key: string]: React.ElementType } = {
+  dashboard: DashboardIcon,
+  test: TestIcon,
+  order: OrderIcon,
+  result: ResultIcon,
+  payment: PaymentIcon,
+  settings: SettingsIcon,
+};
 
 // Define a styled component for ListItemText to adjust typography
 const StyledListItemText = styled(ListItemText)(({ theme }) => ({
@@ -46,6 +44,7 @@ const drawerWidth = 284;
 
 export default function TemporaryDrawer() {
   const DrawerList = (
+
     <Box sx={{ width: 204, height: 296}} role="presentation">
       <Divider sx={{width: '318', margin: '0px'}} />
       <List sx={{paddingTop: '20px'}}>
@@ -53,7 +52,7 @@ export default function TemporaryDrawer() {
           <ListItem key={link.key}>
             <ListItemButton component='a' href={link.href}  >
               <ListItemIcon>
-                {/* {React.createElement(iconMap[link.key], { width: 22, height: 22 })} we will come back to this */}
+                {React.createElement(iconMap[link.key], { width: 22, height: 22 })} we will come back to this
               </ListItemIcon>
               <StyledListItemText primary={link.label}/>
             </ListItemButton>
@@ -86,11 +85,12 @@ export default function TemporaryDrawer() {
         
         {DrawerList}
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 , background: '#F1F4F9'}}>
         {/* Main content goes here */}
         <BoxBasic />
         <BasicMenu />
         <ResponsiveGrid />
+        <EnhancedTable />
       </Box>
     </Box>
   );

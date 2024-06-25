@@ -5,8 +5,6 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
 
-  important: "#root",
-
   theme: {
     extend: {},
   },

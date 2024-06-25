@@ -1,13 +1,12 @@
 // import React from 'react'
+import { Box } from '@mui/material'
 import TemporaryDrawer from './components/TemporaryDrawer'
 
 const Payments = () => {
   return (
-    <div className="flex">
-        <TemporaryDrawer>
-
-        </TemporaryDrawer>
-    </div>
+    <Box sx={{background: '#F1F4F9'}}>
+        <TemporaryDrawer />
+    </Box>
   )
 }
 

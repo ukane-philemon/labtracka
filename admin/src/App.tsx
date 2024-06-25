@@ -4,7 +4,7 @@ import Payments from "./Payments"
 function App() {
 
   return (
-    <Payments />
+      <Payments />
   )
   
 }

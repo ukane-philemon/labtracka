@@ -4,6 +4,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { Box } from '@mui/material';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -16,14 +17,13 @@ export default function BasicMenu() {
   };
 
   return (
-    <div>
+    <Box sx={{margin: 'auto'}}>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        sx={{alignItem: 'end'}}
       >
         today
       </Button>
@@ -40,6 +40,6 @@ export default function BasicMenu() {
         <MenuItem onClick={handleClose}>Two weeks ago</MenuItem>
         <MenuItem onClick={handleClose}>One Month</MenuItem>
       </Menu>
-    </div>
+    </Box>
   );
 }
