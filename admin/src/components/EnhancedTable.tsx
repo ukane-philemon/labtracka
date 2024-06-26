@@ -9,7 +9,12 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
+import TablePagination from '@mui/material/TablePagination';
+import IconButton from '@mui/material/IconButton';
 import { visuallyHidden } from '@mui/utils';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import RequestButton from './RequestButton';
 
 // Define the Data interface
 interface Data {
@@ -186,13 +191,42 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-
 function formatCurrency(value: number) {
   return new Intl.NumberFormat('en-NG', {
     style: 'currency',
     currency: 'NGN',
     minimumFractionDigits: 2,
   }).format(value);
+}
+
+function FooterPagination(props: { count: number; page: number; rowsPerPage: number; onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void; }) {
+  const { count, page, rowsPerPage, onPageChange } = props;
+
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px' }}>
+      <Box>
+        Page {page + 1} of {Math.ceil(count / rowsPerPage)}
+      </Box>
+      <Box>
+        <IconButton
+          onClick={(event) => onPageChange(event, page - 1)}
+          disabled={page === 0}
+          aria-label="previous page"
+        >
+          <KeyboardArrowLeft />
+          Previous
+        </IconButton>
+        <IconButton
+          onClick={(event) => onPageChange(event, page + 1)}
+          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          aria-label="next page"
+        >
+          Next
+          <KeyboardArrowRight />
+        </IconButton>
+      </Box>
+    </Box>
+  );
 }
 
 export default function EnhancedTable() {
@@ -318,6 +352,18 @@ export default function EnhancedTable() {
           </Table>
         </TableContainer>
       </Paper>
+
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2, mb: 6 }}>
+          <RequestButton />
+        </Box>
+       <Box>
+         <FooterPagination
+          count={rows.length}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          onPageChange={handleChangePage}
+        />
+       </Box>
     </Box>
   );
 }

@@ -14,7 +14,7 @@ import ResponsiveGrid from './ResponsiveGrid';
 import BoxBasic from './BoxBasic';
 import BasicMenu from './BasicMenu';
 import EnhancedTable from './EnhancedTable';
-import FooterPagination from './FooterPagination';
+// import FooterPagination from './FooterPagination';
 import RequestButton from './RequestButton';
 import SvgIconComponent from './SvgIconComponent';
 
@@ -86,14 +86,10 @@ export default function TemporaryDrawer() {
         {/* Main content goes here */}
         <BoxBasic />
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-          <BasicMenu />
+        <BasicMenu />
         </Box>
         <ResponsiveGrid />
         <EnhancedTable />
-         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-          <RequestButton />
-        </Box>
-        <FooterPagination />
       </Box>
     </Box>
   );
