@@ -9,13 +9,12 @@ import type { Theme } from '@interface';
 // ----------------------------------------------------------------------
 
 export default function Main({ children, sx, ...other }: {
-  children: ReactNode, sx?: SxProps<Theme>, other: ReactNode
+  children: ReactNode, sx?: SxProps<Theme>, other?: ReactNode
 }): ReactNode {
   const lgUp = useResponsive('up', 'lg');
 
   return (
     <Box
-      component="main"
       sx={{
         flexGrow: 1,
         minHeight: 1,
