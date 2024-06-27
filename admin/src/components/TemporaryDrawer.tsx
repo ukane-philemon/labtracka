@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+// import React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -14,8 +14,6 @@ import ResponsiveGrid from './ResponsiveGrid';
 import BoxBasic from './BoxBasic';
 import BasicMenu from './BasicMenu';
 import EnhancedTable from './EnhancedTable';
-// import FooterPagination from './FooterPagination';
-import RequestButton from './RequestButton';
 import SvgIconComponent from './SvgIconComponent';
 
 const iconMap: { [key: string]: string } = {
@@ -60,7 +58,7 @@ export default function TemporaryDrawer() {
   );
 
   return (
-    <Box sx={{ display: 'flex'}}>
+    <Box sx={{ display: 'flex', backgroundColor: '#F1F4F9'}}>
       <Drawer
         variant="permanent"
         sx={{
@@ -72,7 +70,7 @@ export default function TemporaryDrawer() {
         
           {USER_INFO.map((user, index) => (
             <div key={user.key} className={index === 0 ? 'first-user-info' :'second-user-info'}  style={{
-          padding:index === 0 ? '20px 10px 0px 16px' : '0px 10px 16px 16px', // Add your desired padding value here
+          padding:index === 0 ? '20px 10px 0px 16px' : '0px 10px 16px 16px', 
           fontSize: index === 0 ? '16px' : '14px',
           fontWeight: index === 0 ? '600' : 'normal',
           fontFamily: 'Open Sans',
@@ -82,8 +80,7 @@ export default function TemporaryDrawer() {
         
         {DrawerList}
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 , background: '#F1F4F9'}}>
-        {/* Main content goes here */}
+      <Box component="main" sx={{ flexGrow: 1, p: 5 }}>
         <BoxBasic />
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
         <BasicMenu />

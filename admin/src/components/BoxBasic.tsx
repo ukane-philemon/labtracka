@@ -8,16 +8,17 @@ export default function BoxBasic() {
   return (
     <Box
     height={58}
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
-      p={3}
-      sx={{
-        borderRadius: '16px',
-        padding: '17px 32px', // Corrected padding format
-        background: '#F9F9F9',
-        mb: 5
-      }}
+    // width={996}
+    display="flex"
+    alignItems="center"
+    justifyContent="space-between"
+    p={3}
+    sx={{
+      borderRadius: '16px',
+      padding: '17px 32px', // Corrected padding format
+      backgroundColor: '#F9F9F9',
+      mb: 5
+    }}
     >
       <Box sx={{ paddingLeft: '20px' }} fontFamily="Open Sans">
         <h1>Approved Withdrawals</h1>

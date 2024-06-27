@@ -6,7 +6,11 @@ export default {
   ],
 
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'base-backround': '#F1F4F9',
+      },
+    },
   },
   plugins: [],
 }

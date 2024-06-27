@@ -27,11 +27,11 @@ export default function FooterPagination() {
         height: '41px',
       }}
     >
-      <Typography variant="body2" color="textSecondary" sx={{fontFamily: 'Open Sans', fontSize: '20px', fontWeight: '400'}}>
+      <Typography variant="body2" color="textSecondary" sx={{fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400'}}>
         Page 1 of 1
       </Typography>
       <Pagination
-        count={10}
+        count={1}
         renderItem={(item) => (
           <PaginationItem
             components={{ previous: NavigateBeforeIcon, next: NavigateNextIcon }}

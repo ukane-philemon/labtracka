@@ -4,7 +4,7 @@ import TemporaryDrawer from './components/TemporaryDrawer'
 
 const Payments = () => {
   return (
-    <Box sx={{background: '#F1F4F9'}}>
+    <Box>
         <TemporaryDrawer />
     </Box>
   )

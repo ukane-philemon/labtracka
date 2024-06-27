@@ -1,3 +1,4 @@
+// src/components/EnhancedTable.tsx
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -15,6 +16,7 @@ import { visuallyHidden } from '@mui/utils';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import RequestButton from './RequestButton';
+import SuccessPopover from './SuccessPopover';
 
 // Define the Data interface
 interface Data {
@@ -162,7 +164,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   return (
     <TableHead sx={{backgroundColor: '#B4A3F824'}}>
       <TableRow>
-        <TableCell padding="checkbox" />
+        <TableCell padding="normal"/>
         {headCells.map((headCell) => (
           <TableCell
             height={64}
@@ -235,6 +237,8 @@ export default function EnhancedTable() {
   const [selected, setSelected] = React.useState<string[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const [popoverOpen, setPopoverOpen] = React.useState(false);
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -272,6 +276,15 @@ export default function EnhancedTable() {
     }
 
     setSelected(newSelected);
+
+    // Show the popover
+    if (newSelected.length > selected.length) {
+      setAnchorEl(event.currentTarget);
+      setPopoverOpen(true);
+      setTimeout(() => {
+        setPopoverOpen(false);
+      }, 2000);
+    }
   };
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -353,7 +366,7 @@ export default function EnhancedTable() {
         </TableContainer>
       </Paper>
 
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2, mb: 6 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
           <RequestButton />
         </Box>
        <Box>
@@ -364,6 +377,12 @@ export default function EnhancedTable() {
           onPageChange={handleChangePage}
         />
        </Box>
+       
+      <SuccessPopover 
+        anchorEl={anchorEl}
+        onClose={() => setPopoverOpen(false)}
+        open={popoverOpen}
+      />
     </Box>
   );
 }
