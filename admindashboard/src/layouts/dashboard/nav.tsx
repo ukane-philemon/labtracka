@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import {
   Box, Divider, Drawer,
   ListItemButton, Stack, Typography
@@ -7,12 +7,16 @@ import { alpha } from '@mui/material/styles';
 import { usePathname, useResponsive } from '@components/hooks';
 import { NAV } from '@components/constants';
 import { AccountDesignation, type NavParameter } from '@interface';
-import { RouterLink } from '@utils';
+import { RouterLink } from '@components/utils';
 import { navConfig } from './config-navigation';
 
 // ----------------------------------------------------------------------
 
-export default function Nav({ openNav, onCloseNav }: { openNav: boolean, onCloseNav: () => void }) {
+export default function Nav(
+  {
+    openNav, onCloseNav
+  }: { openNav: boolean, onCloseNav: () => void }
+): ReactNode {
   const pathname = usePathname();
 
   const upLg = useResponsive('up', 'lg');
@@ -21,7 +25,7 @@ export default function Nav({ openNav, onCloseNav }: { openNav: boolean, onClose
     if (openNav) {
       onCloseNav();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- I'm only concerned about changing path-name
   }, [pathname]);
 
   const renderAccount = (
@@ -90,7 +94,7 @@ export default function Nav({ openNav, onCloseNav }: { openNav: boolean, onClose
 
 // ----------------------------------------------------------------------
 
-function NavItem({ item }: { item: NavParameter }) {
+function NavItem({ item }: { item: NavParameter }): ReactNode {
   const pathname = usePathname();
 
   const active = item.path === pathname;

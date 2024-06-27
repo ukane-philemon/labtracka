@@ -7,3 +7,7 @@ export const HEADER = {
 export const NAV = {
   WIDTH: 284,
 };
+
+export const SIDEPANEL = {
+  WIDTH: 400
+}

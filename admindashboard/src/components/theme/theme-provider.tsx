@@ -4,18 +4,18 @@ import { useMemo} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import type { ThemeOptions} from '@mui/material/styles';
 import {createTheme, ThemeProvider as MUIThemeProvider} from '@mui/material/styles';
+import type { Theme } from '@interface';
 import { palette } from './palette';
 import { shadows } from './shadows';
 import { overrides } from './overrides';
 import { typography } from './typography';
 import { customShadows } from './custom-shadows';
-import { Theme } from '@interface';
 
 export function ThemeProvider({ children }: {children: ReactNode}): ReactNode {
 
   const memoizedValue = useMemo<ThemeOptions>(
     ()  => ({
-      palette: palette,
+      palette,
       typography,
       shadows: shadows(),
       customShadows: customShadows(),

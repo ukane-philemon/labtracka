@@ -1,9 +1,10 @@
-import { AccountDesignation, NavParameter } from '@interface';
+import type { ReactNode } from 'react';
+import { AccountDesignation } from '@interface';
+import type { NavParameter } from '@interface'
 import adminAccount from '@assets/icons/admin_account.svg'
 import cardPayment from '@assets/icons/card_payment.svg'
 import doubleSlider from '@assets/icons/double_slider.svg'
 import home from '@assets/icons/home.svg'
-import { ReactNode } from 'react';
 import { ReactSVGHelper } from '@components/helper';
 
 // ----------------------------------------------------------------------
@@ -42,6 +43,7 @@ export const navConfig = (accountDesignation?: AccountDesignation): NavParameter
           icon: icon(doubleSlider),
         },
       ];
+    case undefined: { throw new Error('Not implemented yet: undefined case') }
   }
   return defaultNav
 }

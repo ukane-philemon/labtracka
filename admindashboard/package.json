@@ -5,14 +5,18 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
+    "dev": "vite",
+    "lint:fix": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "preview": "vite preview",
+    "rm:all": "rm -rf node_modules out dist build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@faker-js/faker": "^8.4.1",
     "@mui/material": "^5.15.20",
     "@mui/x-charts": "^7.7.0",
     "@mui/x-data-grid": "^7.7.0",
@@ -40,8 +44,6 @@
     "@vercel/style-guide": "^6.0.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "8.57.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-next": "^14.2.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-jsx-a11y": "^6.9.0",

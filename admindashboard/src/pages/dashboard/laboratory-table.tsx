@@ -1,15 +1,13 @@
-import { ReactSVGHelper } from "@components/helper";
 import { alpha, Box, IconButton, MenuItem, Paper, Popover, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TableHead, TableRow } from "@mui/material";
-import { useState } from "react";
+import { useState, type MouseEvent , type ReactNode } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { SlOptionsVertical } from "react-icons/sl";
 import { Fragment } from "react/jsx-runtime";
-import { MouseEvent } from "react";
-
+import { ReactSVGHelper } from "@components/helper";
 import editOutline from '@assets/icons/edit_outline.svg'
 
-export const LaboratoryTable = () => {
+export const LaboratoryTable = (): ReactNode => {
   const now = new Date()
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -33,7 +31,7 @@ export const LaboratoryTable = () => {
     }}>
       <TableContainer component={Paper}>
         <Table>
-          <TableHead sx={{backgroundColor: 'rgba(180, 163, 248, 0.14)'}}>
+          <TableHead sx={{ backgroundColor: 'rgba(180, 163, 248, 0.14)' }}>
             <TableRow>
               {[
                 { field: "labId", headerName: "Laboratory ID" },
@@ -90,7 +88,7 @@ export const LaboratoryTable = () => {
                     </StyledTableCell>
                   </TableRow>
                   <Popover
-                    open={!!open}
+                    open={Boolean(open)}
                     anchorEl={open as Element}
                     onClose={handleCloseMenu}
                     anchorOrigin={{ vertical: 'top', horizontal: 'left' }}

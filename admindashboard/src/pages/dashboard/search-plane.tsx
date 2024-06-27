@@ -1,17 +1,18 @@
-import { Search, SearchIconWrapper, SearchInputBase, StyledButton } from "@components/styled";
 import { Stack, Typography } from "@mui/material";
 import { useState } from "react";
+import type { ReactNode } from "react";
 import { MdSearch } from "react-icons/md";
+import { Search, SearchIconWrapper, SearchInputBase, StyledButton } from "@components/styled";
 import { ExportStatsSuccessful } from "./export-stats-successful";
 
-export const SearchPlane = () => {
+export const SearchPlane = (): ReactNode => {
   const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (): void => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setOpen(false);
   };
 

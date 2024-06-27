@@ -1,10 +1,10 @@
-import { ReactSVGHelper } from "@components/helper";
 import { Button, Dialog, Stack, Typography } from "@mui/material";
-
+import type { ReactNode } from "react";
+import { ReactSVGHelper } from "@components/helper";
 import successTick from '@assets/icons/success_tick.svg';
 
-export const ExportStatsSuccessful = ({ onClose, open }: { onClose: () => void, open: boolean }) => {
-  const handleClose = () => {
+export const ExportStatsSuccessful = ({ onClose, open }: { onClose: () => void, open: boolean }) : ReactNode => {
+  const handleClose = (): void => {
     onClose();
   };
   return (

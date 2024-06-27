@@ -1,4 +1,4 @@
-import type {ChangeEvent, HTMLInputTypeAttribute, MouseEvent, ReactNode} from "react";
+import type {ChangeEvent, HTMLInputTypeAttribute, ReactNode} from "react";
 
 interface Parameters {
   selected: boolean;

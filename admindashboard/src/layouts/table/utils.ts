@@ -1,5 +1,5 @@
 // import type { HandleTableTypes } from "@interface";
-import {TableOrder} from "@interface";
+import { TableOrder } from "@interface";
 
 
 export type Comparator = -1 | 1 | 0;

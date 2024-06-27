@@ -36,5 +36,5 @@ export const Scrollbar = forwardRef<HTMLElement, ScrollbarInterface>(
   })
 
 
-// eslint-disable-next-line import/no-default-export -- necessary for memo
+ 
 export default memo(Scrollbar);

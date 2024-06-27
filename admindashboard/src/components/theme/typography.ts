@@ -5,7 +5,7 @@ export function remToPx(value: string): number {
 }
 
 export function pxToRem(value: number): string {
-  return `${value / 16}rem`;
+  return `${(value / 16).toString()}rem`;
 }
 
 export function responsiveFontSizes({sm, md, lg}: {
@@ -84,8 +84,8 @@ export const typography: TypographyOptions = {
     fontSize: pxToRem(16),
   },
   subtitle2: {
-    fontWeight: 600,
-    lineHeight: 22 / 14,
+    fontWeight: 400,
+    lineHeight: pxToRem(20),
     fontSize: pxToRem(14),
   },
   body1: {
@@ -97,8 +97,9 @@ export const typography: TypographyOptions = {
     fontSize: pxToRem(14),
   },
   caption: {
-    lineHeight: 1.25,
+    lineHeight: pxToRem(18),
     fontSize: pxToRem(12),
+    color: 'rgba(119, 119, 119, 0.4)'
   },
   overline: {
     fontWeight: 700,

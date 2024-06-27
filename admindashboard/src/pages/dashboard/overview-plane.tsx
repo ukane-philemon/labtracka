@@ -1,11 +1,12 @@
-import { BaseOverviewCard } from "@components/helper";
-import { FormControl, MenuItem, Select, SelectChangeEvent, Stack, Typography } from "@mui/material";
+import { FormControl, MenuItem, Select, type SelectChangeEvent, Stack, Typography } from "@mui/material";
 import { useState } from "react";
+import type { ReactNode } from "react";
+import { BaseOverviewCard } from "@components/helper";
 
-export const OverviewPlane = () => {
+export const OverviewPlane = (): ReactNode => {
   const [period, setPeriod] = useState("today");
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event: SelectChangeEvent): void => {
     setPeriod(event.target.value);
   };
   return (
@@ -13,7 +14,7 @@ export const OverviewPlane = () => {
       <Stack direction="row" sx={{ justifyContent: "space-between" }}>
         <Stack sx={{ alignItems: 'flex-start' }}><Typography variant="h5">Overview</Typography></Stack>
         <FormControl variant="standard">
-          <Select defaultValue="today" sx={{'&::before, &::after': {borderBottom: 'unset'}}}>
+          <Select defaultValue="today" sx={{ '&::before, &::after': { borderBottom: 'unset' } }}>
             <MenuItem value="today">Today</MenuItem>
             <MenuItem value="last-week">Last Week</MenuItem>
             <MenuItem value="last-month">Last Month</MenuItem>
@@ -22,7 +23,7 @@ export const OverviewPlane = () => {
         </FormControl>
       </Stack>
       {/* <Stack direction="row" gap={2}> */}
-      <Stack direction="row" sx={{justifyContent: 'space-around'}}>
+      <Stack direction="row" sx={{ justifyContent: 'space-around' }}>
         <BaseOverviewCard title="Total Users" content="1,012" subTitle="+11.02%" />
         <BaseOverviewCard title="Total Revenue" content="1,012" subTitle="+11.02%" isOdd={false} />
         <BaseOverviewCard title="Total Test Orders" content="100" subTitle="+11.02%" />

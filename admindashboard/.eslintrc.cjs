@@ -9,10 +9,6 @@ module.exports = {
     "es2021": true
   },
   extends: [
-    "airbnb",
-    "airbnb/hooks",
-    // "next",
-    // "next/core-web-vitals",
     "prettier",
     require.resolve('@vercel/style-guide/eslint/node'),
     require.resolve('@vercel/style-guide/eslint/react'),
@@ -43,6 +39,7 @@ module.exports = {
     "no-restricted-exports": 0,
     "no-shadow": 0,
     "no-underscore-dangle": 0,
+    "no-unused-vars": 0,
     "no-use-before-define": 0,
     "react/forbid-prop-types": 0,
     "react/function-component-definition": 0,
@@ -52,12 +49,12 @@ module.exports = {
     "react/no-children-prop": 0,
     "react/react-in-jsx-scope": 0,
     "react/require-default-props": 0,
-  }
-  // settings: {
-  //   'import/resolver': {
-  //     typescript: {
-  //       project,
-  //     },
-  //   },
-  // },
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project,
+      },
+    }
+  },
 }

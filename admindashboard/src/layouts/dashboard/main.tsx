@@ -1,19 +1,16 @@
 import Box from '@mui/material/Box';
+import type { ReactNode } from 'react';
+import type { SxProps } from '@mui/material';
+import { useResponsive } from '@components/hooks';
+import { NAV } from '@components/constants';
+import type { Theme } from '@interface';
 
-import {useResponsive} from '@components/hooks';
-
-import {NAV} from '@components/constants';
-import type {ReactNode} from 'react';
-import type {SxProps} from '@mui/material';
-import {Theme} from '@interface';
 
 // ----------------------------------------------------------------------
 
-const SPACING = 8;
-
-export default function Main({children, sx, ...other}: {
+export default function Main({ children, sx, ...other }: {
   children: ReactNode, sx?: SxProps<Theme>, other: ReactNode
-}) {
+}): ReactNode {
   const lgUp = useResponsive('up', 'lg');
 
   return (

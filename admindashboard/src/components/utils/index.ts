@@ -11,6 +11,5 @@ export {
   fTimestamp,
   fToNow
 } from './format-time';
-// export {getUserAuth0} from ../helper/react-svg-helper;
-// export {Redirect} from './redirect';
+export {RouterLink} from './router-link.tsx';
 

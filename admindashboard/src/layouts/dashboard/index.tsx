@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { Fragment, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import Main from "./main";
 import Nav from "./nav";
 
@@ -9,21 +9,17 @@ export const DrawerLayout = ({ children }: { children: ReactNode }) => {
   const [openNav, setOpenNav] = useState(false);
 
   return (
-    <Fragment>
-      {/* <Header onOpenNav={() => setOpenNav(true)} /> */}
-
-      <Box
+    <Box
         sx={{
           minHeight: 1,
           display: 'flex',
           flexDirection: { xs: 'column', lg: 'row' },
         }}
       >
-        <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} />
+        <Nav openNav={openNav} onCloseNav={() => { setOpenNav(false); }} />
 
         <Main>{children}</Main>
       </Box>
-    </Fragment>
   )
 
   // return (
