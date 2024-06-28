@@ -1,5 +1,7 @@
-import type {ChangeEvent, MouseEvent} from "react";
 import type {SxProps} from "@mui/system";
+import type { AllModels, AllModelsEnum } from "./models";
+
+export type Comparator = -1 | 1 | 0;
 
 export enum TableOrder {
   ASC = 'asc',
@@ -26,16 +28,6 @@ export enum ExtendedModelEnum {
 
 export type TableContentType = string | number | boolean | undefined
 
-// export type HandleTableEnum = AllModelsEnum | ExtendedModelEnum
+export type HandleTableEnum = AllModelsEnum
 
-// export type HandleTableTypes = AllModels | StudentResultsTable
-
-export interface TableHeadParameters {
-  order: TableOrder,
-  orderBy: string,
-  rowCount: number,
-  headLabel: HeadLabelParameters[],
-  numSelected: number,
-  onRequestSort: (event: MouseEvent, id: string) => void,
-  onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void
-}
+export type HandleTableTypes = AllModels

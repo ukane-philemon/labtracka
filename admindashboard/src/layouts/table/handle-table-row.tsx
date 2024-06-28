@@ -1,11 +1,27 @@
-import type {ChangeEvent, HTMLInputTypeAttribute, ReactNode} from "react";
-
-interface Parameters {
-  selected: boolean;
-  // modelType: HandleTableEnum;
-  // data: HandleTableTypes;
-  handleClick: (event: ChangeEvent<HTMLInputElement>, key: string) => void;
-}
+import type { ChangeEvent, HTMLInputTypeAttribute, MouseEvent, ReactNode } from "react";
+import { useState } from "react";
+import {
+  Button,
+  Checkbox,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  IconButton,
+  MenuItem,
+  Popover,
+  TableCell,
+  TableRow,
+  Typography
+} from "@mui/material";
+import { HiOutlineTrash } from "react-icons/hi";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { SlOptionsVertical } from "react-icons/sl";
+import editOutline from '@assets/icons/edit_outline.svg'
+import { ReactSVGHelper } from "@components/helper";
+import type { HandleTableEnum, HandleTableTypes, HeadLabelParameters } from "@interface";
+import { fToNow } from "@components/utils";
 
 interface ModelTableCellParameters {
   content?: string | number | ReactNode;
@@ -47,175 +63,216 @@ enum DialogOptions {
   View = 'View',
 }
 
-// export function HandleTableRow({selected, data, handleClick, modelType}: Parameters): ReactNode {
-//   const initialOpen = {popover: null, edit: false, delete: false, view: false}
+export function HandleTableRow({
+  selected, data, handleClick, headLabel, modelType
+}: {
+  data: HandleTableTypes;
+  handleClick: (event: ChangeEvent<HTMLInputElement>, key: string) => void;
+  headLabel: HeadLabelParameters[];
+  modelType: HandleTableEnum;
+  selected: boolean;
+}): ReactNode {
+  const initialOpen = { popover: null, edit: false, delete: false, view: false }
 
-//   const initialFormError: FormErrorParameters = {
-//     name: '', courseCode: '', creditUnit: '', title: ''
-//   }
+  const initialFormError: FormErrorParameters = {
+    name: '', courseCode: '', creditUnit: '', title: ''
+  }
 
-//   const [open, setOpen] = useState<OpenState>(initialOpen);
+  const [open, setOpen] = useState<OpenState>(initialOpen);
 
-//   const formError = initialFormError
+  const formError = initialFormError
 
-//   const handleCloseMenu = (): void => {
-//     setOpen({...open, popover: null});
-//   };
+  const handleCloseMenu = (): void => {
+    setOpen({ ...open, popover: null });
+  };
 
-//   const handleDelete = (): void => {
-//     setOpen({...open, delete: !open.delete})
-//   }
+  const handleDelete = (): void => {
+    setOpen({ ...open, delete: !open.delete })
+  }
 
-//   const handleEdit = (): void => {
-//     setOpen({...open, edit: !open.edit})
-//   }
+  const handleEdit = (): void => {
+    setOpen({ ...open, edit: !open.edit })
+  }
 
-//   const handleOpenMenu = (event: MouseEvent<HTMLButtonElement>): void => {
-//     setOpen({...open, popover: event.currentTarget});
-//   };
+  const handleOpenMenu = (event: MouseEvent<HTMLButtonElement>): void => {
+    setOpen({ ...open, popover: event.currentTarget });
+  };
 
-//   const handleView = (): void => {
-//     setOpen({...open, view: !open.view})
-//   }
+  const handleView = (): void => {
+    setOpen({ ...open, view: !open.view })
+  }
 
-//   const {_id} = data
+  const { id } = data
 
-//   return (
-//     <>
-//       <TableRow hover key={_id} role="checkbox" selected={selected} tabIndex={-1}>
-//         <TableCell padding="checkbox">
-//           <Checkbox
-//             checked={selected}
-//             disableRipple
-//             onChange={(event: ChangeEvent<HTMLInputElement>) => {
-//               handleClick(event, _id);
-//             }}
-//           />
+  return (
+    <>
+      <TableRow hover key={id} role="checkbox" selected={selected} tabIndex={-1}>
+        <TableCell padding="checkbox">
+          <Checkbox
+            checked={selected}
+            disableRipple
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              handleClick(event, id);
+            }}
+          />
 
-//         </TableCell>
+        </TableCell>
 
-//         <Logic dataModel={data} modelType={modelType}/>
-//         <TableCell align="right">
-//           <IconButton onClick={handleOpenMenu}>
-//             <Iconify icon="eva:more-vertical-fill"/>
-//           </IconButton>
-//         </TableCell>
-//       </TableRow>
+        <Logic dataModel={data} modelType={modelType} headLabel={headLabel} />
+        <TableCell align="right">
+          <IconButton onClick={handleOpenMenu}>
+            <SlOptionsVertical size={20} />
+          </IconButton>
+        </TableCell>
+      </TableRow>
 
-//       {/*Delete Dialog      */}
-//       <Dialog
-//         aria-describedby="alert-dialog-description"
-//         aria-labelledby="alert-dialog-title"
-//         onClose={handleDelete}
-//         open={open.delete}
-//       >
-//         <DialogTitle id="alert-dialog-title">
-//           Delete {modelType}
-//         </DialogTitle>
-//         <DialogContent>
-//           <DialogContentText id="alert-dialog-description">
-//             Are you sure you want to this <Typography>{modelType}</Typography>
-//           </DialogContentText>
-//         </DialogContent>
-//         <DialogActions>
-//           <Button onClick={handleDelete}>
-//             Cancel
-//           </Button>
-//           <Button onClick={handleDelete}>
-//             Delete
-//           </Button>
-//         </DialogActions>
-//       </Dialog>
+      {/*Delete Dialog      */}
+      <Dialog
+        aria-describedby="alert-dialog-description"
+        aria-labelledby="alert-dialog-title"
+        onClose={handleDelete}
+        open={open.delete}
+      >
+        <DialogTitle id="alert-dialog-title">
+          Delete {modelType}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to this <Typography>{modelType}</Typography>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDelete}>
+            Cancel
+          </Button>
+          <Button onClick={handleDelete}>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
 
-//       {/*Edit Dialog      */}
-//       <Dialog
-//         aria-describedby="alert-dialog-description"
-//         aria-labelledby="alert-dialog-title"
-//         onClose={handleEdit}
-//         open={open.edit}
-//       >
-//         <DialogTitle id="alert-dialog-title">
-//           Edit {modelType}
-//         </DialogTitle>
-//         <Logic
-//           dataModel={data}
-//           dialogOption={DialogOptions.Edit}
-//           formError={formError}
-//           modelType={modelType}
-//         />
-//         <DialogActions>
-//           <Button id="cancel" onClick={handleEdit}>
-//             Cancel
-//           </Button>
-//           <Button id="save" onClick={handleEdit}>
-//             Save
-//           </Button>
-//         </DialogActions>
-//       </Dialog>
+      {/*Edit Dialog      */}
+      <Dialog
+        aria-describedby="alert-dialog-description"
+        aria-labelledby="alert-dialog-title"
+        onClose={handleEdit}
+        open={open.edit}
+      >
+        <DialogTitle id="alert-dialog-title">
+          Edit {modelType}
+        </DialogTitle>
+        <Logic
+          headLabel={headLabel}
+          dataModel={data}
+          dialogOption={DialogOptions.Edit}
+          formError={formError}
+          modelType={modelType}
+        />
+        <DialogActions>
+          <Button id="cancel" onClick={handleEdit}>
+            Cancel
+          </Button>
+          <Button id="save" onClick={handleEdit}>
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
 
-//       {/* View Dialog      */}
-//       <Dialog
-//         aria-describedby="alert-dialog-description"
-//         aria-labelledby="alert-dialog-title"
-//         onClose={handleView}
-//         open={open.view}
-//       >
-//         <DialogTitle id="alert-dialog-title">
-//           View {modelType}
-//         </DialogTitle>
-//         <Logic
-//           dataModel={data}
-//           dialogOption={DialogOptions.View}
-//           modelType={modelType}
-//         />
-//         <DialogActions>
-//           <Button onClick={handleView}>
-//             Close
-//           </Button>
-//         </DialogActions>
-//       </Dialog>
+      {/* View Dialog      */}
+      <Dialog
+        aria-describedby="alert-dialog-description"
+        aria-labelledby="alert-dialog-title"
+        onClose={handleView}
+        open={open.view}
+      >
+        <DialogTitle id="alert-dialog-title">
+          View {modelType}
+        </DialogTitle>
+        <Logic
+          dataModel={data}
+          headLabel={headLabel}
+          dialogOption={DialogOptions.View}
+          modelType={modelType}
+        />
+        <DialogActions>
+          <Button onClick={handleView}>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
 
-//       <Popover
-//         anchorEl={open.popover as Element}
-//         anchorOrigin={{vertical: 'top', horizontal: 'left'}}
-//         onClose={handleCloseMenu}
-//         open={Boolean(open.popover)}
-//         transformOrigin={{vertical: 'top', horizontal: 'right'}}
-//       >
-//         <MenuItem onClick={handleView}>
-//           <Iconify icon="mdi:show-outline" sx={{mr: 2}}/>
-//           View
-//         </MenuItem>
+      <Popover
+        anchorEl={open.popover as Element}
+        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        onClose={handleCloseMenu}
+        open={Boolean(open.popover)}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
+        <MenuItem onClick={handleView}>
+          <MdOutlineRemoveRedEye size={20} style={{ margin: '0 8px 0 0' }} />
+          View
+        </MenuItem>
 
-//         <MenuItem onClick={handleEdit}>
-//           <Iconify icon="eva:edit-fill" sx={{mr: 2}}/>
-//           Edit
-//         </MenuItem>
+        <MenuItem onClick={handleEdit}>
+          <ReactSVGHelper src={editOutline} margin='0 8px 0 0' />
+          Edit
+        </MenuItem>
 
-//         <MenuItem onClick={handleDelete} sx={{color: 'error.main'}}>
-//           <Iconify icon="eva:trash-2-outline" sx={{mr: 2}}/>
-//           Delete
-//         </MenuItem>
-//       </Popover>
-//     </>
+        <MenuItem onClick={handleDelete} sx={{ color: 'error.main' }}>
+          <HiOutlineTrash size={20} style={{ color: 'red', margin: '0 8px 0 0' }} />
+          Delete
+        </MenuItem>
+      </Popover>
+    </>
 
-//   )
-// }
+  )
+}
 
-// function Logic(
-//   {
-//     dataModel,
-//     modelType,
-//     dialogOption,
-//     formError,
-//     handleFormData,
-//   }: {
-//     dataModel: HandleTableTypes;
-//     dialogOption?: DialogOptions;
-//     formError?: FormErrorParameters;
-//     handleFormData?: (event: ChangeEvent<HTMLInputElement>) => void;
-//     modelType: HandleTableEnum;
-//   }): ReactNode {
+function Logic(
+  {
+    dataModel,
+    headLabel,
+    dialogOption,
+    formError,
+    handleFormData,
+  }: {
+    dataModel: HandleTableTypes;
+    headLabel: HeadLabelParameters[];
+    dialogOption?: DialogOptions;
+    formError?: FormErrorParameters;
+    handleFormData?: (event: ChangeEvent<HTMLInputElement>) => void;
+    modelType: HandleTableEnum;
+  }): ReactNode {
+  console.log('====================================');
+  console.log(dataModel, headLabel);
+  console.log('====================================');
+
+  return (
+    <>
+      {
+        headLabel.map(({ id }) => {
+           
+          let item: unknown = dataModel[id] as unknown
+
+          // check if value is a date time
+          if (Object.prototype.toString.call(item) === '[object Date]') {
+            item = fToNow(item as Date)
+          }
+
+          return (
+            <TableCell key={id}
+              align='center'
+              component="th"
+             padding="none" scope="row"
+            >
+              {item}
+            </TableCell>
+          )
+        })
+      }
+    </>
+  )
+}
 
 //   let data: HandleTableTypes
 //   let tableCell: ModelTableCellParameters[] | undefined;

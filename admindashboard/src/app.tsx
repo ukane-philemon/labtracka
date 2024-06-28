@@ -2,8 +2,8 @@ import '@assets/stylesheets/global.css';
 
 import {type ReactNode} from "react";
 import { useScrollToTop } from '@components/hooks';
-import {Router} from '@router'
 import { ThemeProvider } from '@components/theme';
+import {Router} from './router'
 
 // ----------------------------------------------------------------------
 

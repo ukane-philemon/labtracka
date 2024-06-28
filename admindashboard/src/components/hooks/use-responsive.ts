@@ -25,14 +25,15 @@ export function useResponsive(query: "up" | "down" | "between", start: Breakpoin
 
 // ----------------------------------------------------------------------
 
-export function useWidth() {
+export function useWidth(): string {
   const theme = useTheme();
 
   const keys = [...theme.breakpoints.keys].reverse();
 
   return (
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- need to check something
     keys.reduce((output, key) => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
+      // eslint-disable-next-line react-hooks/rules-of-hooks -- it's fine to check it this way
       const matches = useMediaQuery(theme.breakpoints.up(key));
 
       return !output && matches ? key : output;

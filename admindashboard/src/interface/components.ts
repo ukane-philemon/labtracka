@@ -5,3 +5,9 @@ export interface NavParameter {
   path: string;
   title: string;
 }
+
+export enum Query {
+  Up = 1,
+  Down = 2,
+  Between = 3
+}

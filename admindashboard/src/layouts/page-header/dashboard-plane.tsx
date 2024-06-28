@@ -1,12 +1,12 @@
-import { Avatar, Box, Divider, IconButton, Stack, Typography } from "@mui/material";
+import { IconButton, Typography, Avatar, Divider } from "@mui/material";
+import { Box, Stack } from "@mui/system";
+import { type ReactNode, useState, useRef } from "react";
 import { MdMenu } from "react-icons/md";
-import type { ReactNode } from "react";
-import { useRef, useState } from "react";
 import notificationBell from '@assets/icons/notification_bell.svg'
-import { account } from "@mock";
-import { NotificationPanel } from "./notification-panel.tsx";
+import { NotificationPanel } from "@pages/dashboard/notification-panel";
+import { mockAccount } from "@mock";
 
-export const DashboardPlane = (): ReactNode => {
+export const DashboardPlane = ({title}: {title: string}): ReactNode => {
   const [openPanel, setOpenPanel] = useState<boolean>(false)
   const handleOpenPanel = (): void => {
     setOpenPanel(true);
@@ -32,7 +32,7 @@ export const DashboardPlane = (): ReactNode => {
           <IconButton onClick={() => {
             console.log("Open");
           }}><MdMenu /></IconButton>
-          <Typography variant='h5'>DashBoard</Typography>
+          <Typography variant='h5'>{title}</Typography>
         </Stack>
         <Stack direction='row' gap={2} sx={{ alignItems: 'center', height: '34px' }}>
           <IconButton
@@ -47,7 +47,7 @@ export const DashboardPlane = (): ReactNode => {
           <IconButton>
             <Avatar
               alt="photoURL"
-              src={account.photoURL}
+              src={mockAccount.photoURL}
               sx={{ width: 34, height: 34 }}
             />
           </IconButton>

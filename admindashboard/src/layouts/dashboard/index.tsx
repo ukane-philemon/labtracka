@@ -9,6 +9,8 @@ import Nav from "./nav";
 export const DrawerLayout = ({ children }: { children: ReactNode }): ReactNode => {
   const [openNav, setOpenNav] = useState(false);
 
+  //TODO: Refactor the header to be here
+
   return (
     <Box
       sx={{

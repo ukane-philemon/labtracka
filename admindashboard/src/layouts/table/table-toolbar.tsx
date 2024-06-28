@@ -7,20 +7,12 @@ import {
 } from '@mui/material';
 import IconButton from "@mui/material/IconButton"
 import { FaRegTrashCan } from "react-icons/fa6";
-import { IoMdPrint, IoMdSearch  } from "react-icons/io";
+import { IoMdPrint, IoMdSearch } from "react-icons/io";
 import { MdFilterList } from "react-icons/md";
 import { TbReportAnalytics } from "react-icons/tb";
 import type { ChangeEvent, ReactNode } from "react";
 import type { TableOptions } from '@interface';
 import { ReplaceDeleteEnum } from '@interface';
-
-interface TableToolbar {
-  numSelected: number;
-  filterName: string;
-  onFilterName: (event: ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
-  options?: TableOptions;
-}
 
 
 export function TableToolbar(
@@ -30,7 +22,13 @@ export function TableToolbar(
     onFilterName,
     placeholder,
     options
-  }: TableToolbar): ReactNode {
+  }: {
+    numSelected: number;
+    filterName: string;
+    onFilterName: (event: ChangeEvent<HTMLInputElement>) => void;
+    placeholder: string;
+    options?: TableOptions;
+  }): ReactNode {
 
   return (
     <Toolbar
@@ -85,7 +83,7 @@ function SelectAllAction({ flag }: { flag?: ReplaceDeleteEnum }): ReactNode {
       return (
         <Tooltip title="Report">
           <IconButton>
-          <TbReportAnalytics />
+            <TbReportAnalytics />
           </IconButton>
         </Tooltip>
       )
@@ -93,7 +91,7 @@ function SelectAllAction({ flag }: { flag?: ReplaceDeleteEnum }): ReactNode {
       return (
         <Tooltip title="Delete">
           <IconButton>
-          <FaRegTrashCan />
+            <FaRegTrashCan />
           </IconButton>
         </Tooltip>
       )

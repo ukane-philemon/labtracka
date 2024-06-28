@@ -2,7 +2,7 @@ import { forwardRef, type ReactNode } from "react";
 import { Avatar, Box, Drawer, Paper, Stack, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import closeNotification from "@assets/icons/close_notification.svg";
-import { account } from "@mock";
+import { mockAccount } from "@mock";
 
 
 export const NotificationPanel = forwardRef(function NotificationPanelForwardRef(
@@ -11,9 +11,6 @@ export const NotificationPanel = forwardRef(function NotificationPanelForwardRef
   const handleCloseButton = (): void => {
     handleClosePanel();
   }
-  console.log('====================================');
-  console.log(openPanel);
-  console.log('====================================');
 
   return (
     <Drawer anchor="right" open={openPanel} onClose={handleClosePanel}>
@@ -36,7 +33,7 @@ export const NotificationPanel = forwardRef(function NotificationPanelForwardRef
         </Stack>
 
         <Stack gap={1}>
-          {account.notifications.map(({ key, icon, time, content }) => (
+          {mockAccount.notifications.map(({ key, icon, time, content }) => (
             <Paper elevation={1} key={key} >
               <Stack p={1} direction='row' gap={1} sx={{ width: '100%' }}>
                 <Avatar src={icon} variant="rounded" sx={{ height: 23, width: 24 }} />
