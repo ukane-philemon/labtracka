@@ -14,15 +14,20 @@ import ResponsiveGrid from './ResponsiveGrid';
 import BoxBasic from './BoxBasic';
 import BasicMenu from './BasicMenu';
 import EnhancedTable from './EnhancedTable';
-import SvgIconComponent from './SvgIconComponent';
+import dashboardIcon from '../assets/Home.svg';
+import testIcon from '../assets/test.svg';
+import orderIcon from '../assets/order.svg';
+import resultIcon from '../assets/result.svg';
+import paymentIcon from '../assets/wallet.svg';
+import settingIcon from '../assets/settings.svg';
 
 const iconMap: { [key: string]: string } = {
-  dashboard: "../assets/Home.svg",
-  test: "../assets/test.svg",
-  order: "../assets/order.svg",
-  result: "../assets/result.svg",
-  payment: "../assets/wallet.svg",
-  settings: "../assets/settings.svg",
+  dashboardIcon,
+  testIcon,
+  orderIcon,
+  resultIcon,
+  paymentIcon,
+  settingIcon,
 };
 
 // Define a styled component for ListItemText to adjust typography
@@ -47,7 +52,7 @@ export default function TemporaryDrawer() {
           <ListItem key={link.key}>
             <ListItemButton component='a' href={link.href}  >
               <ListItemIcon>
-                  <SvgIconComponent src={iconMap[link.key]} width={22} height={22} />
+                <img src={iconMap[link.key]} width={22} height={22} />
               </ListItemIcon>
               <StyledListItemText primary={link.label}/>
             </ListItemButton>

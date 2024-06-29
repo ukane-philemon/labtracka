@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import Success from '../assets/Succes.svg' 
 
 interface SuccessModalProps {
   open: boolean;
@@ -24,8 +25,11 @@ const CustomButton = styled(Button)({
   borderRadius: '8px',
   border: '1px',
   lineHeight: '16px',
+  '&:hover': {
+    backgroundColor: '#000066', // Change the background color on hover
+    color: '#FFD700', // Change the text color on hover
+  },
 });
-
 
 const SuccessModal: React.FC<SuccessModalProps> = ({ open, onClose }) => {
   return (
@@ -44,7 +48,6 @@ const SuccessModal: React.FC<SuccessModalProps> = ({ open, onClose }) => {
           width: 357,
           height: 297.02,
           bgcolor: 'background.paper',
-          border: '2px solid #000',
           boxShadow: 24,
           p: 4,
           textAlign: 'center',
@@ -52,17 +55,18 @@ const SuccessModal: React.FC<SuccessModalProps> = ({ open, onClose }) => {
           borderRadius: '10px'
         }}
       >
-        <Typography id="success-modal-title" variant="h6" component="h2">
-          Success!
+        <img src={Success} alt="Success" sx={{ width: '100%', height: '100%' }} />
+        <Typography id="success-modal-title" variant="h1" component="h1" color="#00004D" sx={{ fontSize: '20px', mt: 4 }}>
+          Success
         </Typography>
         <Typography id="success-modal-description" sx={{ mt: 2 }}>
           The cell has been successfully checked.
         </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2}}>
-          <CustomButton variant="contained" size="large">
-            close
-        </CustomButton>
-          </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+          <CustomButton variant="contained" size="large" onClick={onClose} >
+            Close
+          </CustomButton>
+        </Box>
       </Box>
     </Modal>
   );
