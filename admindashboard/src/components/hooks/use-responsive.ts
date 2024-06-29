@@ -1,4 +1,5 @@
-import { type Breakpoint, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
+import type { Breakpoint } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // ----------------------------------------------------------------------
@@ -19,24 +20,6 @@ export function useResponsive(query: "up" | "down" | "between", start: Breakpoin
       if (end)
         themeRange = theme.breakpoints.between(start, end);
       break
-    }
-    return useMediaQuery(themeRange);
-}
-
-// ----------------------------------------------------------------------
-
-export function useWidth(): string {
-  const theme = useTheme();
-
-  const keys = [...theme.breakpoints.keys].reverse();
-
-  return (
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- need to check something
-    keys.reduce((output, key) => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks -- it's fine to check it this way
-      const matches = useMediaQuery(theme.breakpoints.up(key));
-
-      return !output && matches ? key : output;
-    }, null) || 'xs'
-  );
+  }
+  return useMediaQuery(themeRange);
 }

@@ -25,4 +25,6 @@ dist-ssr
 
 .vscode/
 .idea/
-admindashboard/pnpm-lock.yaml
+
+# All lock.yaml files 
+*-lock.yaml

@@ -2,70 +2,20 @@ import { faker } from '@faker-js/faker';
 import type { LaboratoryModel } from "@interface";
 
 
-export const mockLaboratory: LaboratoryModel[] = [
-  {
-    id: 1,
-    branchId: "LMS001",
-    city: "Port Harcourt",
-    state: "Rivers",
-    streetName: "John Wobo",
+export const mockLaboratory: LaboratoryModel[] = [...Array<LaboratoryModel>(23)].map((_, index) => {
+  const addLeadingZero = (i: number): string => i >= 0 && i < 10 ? `0${i.toString()}` : i.toString()
+
+  return ({
+    id: index,
+    branchId: `LMS0${addLeadingZero(index)}`,
+    city: faker.location.city(),
+    state: faker.location.state(),
+    streetName: faker.location.street(),
     addressNo: faker.number.int(50),
     dateCreated: faker.date.past(),
     totalTestOrders: faker.number.int(1000),
     totalRevenue: faker.number.int(1000),
     pendingOrders: faker.number.int(1000),
     totalUsers: faker.number.int(1000),
-  },
-  {
-    id: 2,
-    branchId: "LMS002",
-    city: "Port Harcourt",
-    state: "Rivers",
-    streetName: "John Wobo",
-    addressNo: faker.number.int(50),
-    dateCreated: faker.date.past(),
-    totalTestOrders: faker.number.int(1000),
-    totalRevenue: faker.number.int(1000),
-    pendingOrders: faker.number.int(1000),
-    totalUsers: faker.number.int(1000),
-  },
-  {
-    id: 3,
-    branchId: "LMS003",
-    city: "Port Harcourt",
-    state: "Rivers",
-    streetName: "John Wobo",
-    addressNo: faker.number.int(50),
-    dateCreated: faker.date.past(),
-    totalTestOrders: faker.number.int(1000),
-    totalRevenue: faker.number.int(1000),
-    pendingOrders: faker.number.int(1000),
-    totalUsers: faker.number.int(1000),
-  },
-  {
-    id: 4,
-    branchId: "LMS004",
-    city: "Port Harcourt",
-    state: "Rivers",
-    streetName: "John Wobo",
-    addressNo: faker.number.int(50),
-    dateCreated: faker.date.past(),
-    totalTestOrders: faker.number.int(1000),
-    totalRevenue: faker.number.int(1000),
-    pendingOrders: faker.number.int(1000),
-    totalUsers: faker.number.int(1000),
-  },
-  {
-    id: 5,
-    branchId: "LMS005",
-    city: "Port Harcourt",
-    state: "Rivers",
-    streetName: "John Wobo",
-    addressNo: faker.number.int(50),
-    dateCreated: faker.date.past(),
-    totalTestOrders: faker.number.int(1000),
-    totalRevenue: faker.number.int(1000),
-    pendingOrders: faker.number.int(1000),
-    totalUsers: faker.number.int(1000),
-  },
-]
+  })
+})
