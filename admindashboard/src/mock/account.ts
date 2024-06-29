@@ -7,7 +7,7 @@ import {fToNow} from "@components/utils";
 // ----------------------------------------------------------------------
 
 export const mockAccount = {
-  displayName: 'Peace Ewor',
+  displayName: faker.person.fullName(),
   email: 'admin.lab1@gmail.com',
   photoURL: '/images/avatar.png',
   notifications: [

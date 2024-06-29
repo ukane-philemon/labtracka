@@ -11,3 +11,8 @@ export enum Query {
   Down = 2,
   Between = 3
 }
+
+export enum WarningOption {
+  Yes = "Yes",
+  No = "No"
+}

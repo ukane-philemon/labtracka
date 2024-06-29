@@ -43,21 +43,19 @@ export default function LaboratoryPage(): ReactNode {
         <LaboratoryTable />
 
         <DrawerHelper openPanel={openDrawer} handleClosePanel={handleCloseDrawer} title="Add Laboratory">
-          <Stack>
+            <FormControl sx={{height: "100%"}}>
 
-            <FormControl>
-              <Stack gap={2}>
+              <Stack gap={2} pb={3} sx={{flexGrow: 1}}>
                 <TextField label="State" size="small" />
                 <TextField label="City" size="small" />
                 <TextField label="Street Name" size="small" />
                 <TextField label="Address Number" size="small" />
+              </Stack>
                 <StyledButton onClick={handleOpenDialog}>
                   <Typography>Create Lab</Typography>
                 </StyledButton>
-              </Stack>
             </FormControl>
 
-          </Stack>
         </DrawerHelper>
 
         <SuccessDialog

@@ -1,5 +1,5 @@
 export type { NavParameter } from './components';
-export { Query } from './components';
+export { Query, WarningOption } from './components';
 
 export { AccountDesignation } from './models/account';
 export { LaboratoryTableLabel } from './models/laboratory';
