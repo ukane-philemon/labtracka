@@ -152,12 +152,12 @@ export function HandleTable(
                   <HandleTableRow
                     data={row}
                     handleClick={(event) => {
-                      handleClick(event, row._id);
+                      handleClick(event, row.id);
                     }}
                     headLabel={headLabel}
-                    key={row._id}
+                    key={row.id}
                     modelType={modelType}
-                    selected={selected.includes(row._id)}
+                    selected={selected.includes(row.id)}
                   />
                 ))}
 

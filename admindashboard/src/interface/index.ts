@@ -1,10 +1,13 @@
-export { AccountDesignation } from './models';
-
 export type { NavParameter } from './components';
 export { Query } from './components';
 
-export type { AllModels, LaboratoryModel, UserModel } from './models';
-export { AllModelsEnum, LaboratoryTableLabel, UserTableLabel } from './models';
+export { AccountDesignation } from './models/account';
+export { LaboratoryTableLabel } from './models/laboratory';
+export type { LaboratoryModel } from './models/laboratory';
+export { UserTableLabel } from './models/user';
+export type { UserModel } from './models/user';
+export { AllModelsEnum } from './models';
+export type { AllModels } from './models';
 
 export type {
   Comparator,

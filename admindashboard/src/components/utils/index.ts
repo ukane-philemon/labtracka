@@ -13,3 +13,4 @@ export {
   fToNow
 } from './format-time';
 export { RouterLink } from './router-link.tsx';
+export { SvgColor } from './svg-color.tsx';

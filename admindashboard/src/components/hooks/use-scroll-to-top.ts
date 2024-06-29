@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 
-export function useScrollToTop() {
+export function useScrollToTop(): null {
   const { pathname } = useLocation();
 
   useEffect(() => {

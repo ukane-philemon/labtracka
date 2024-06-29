@@ -4,6 +4,12 @@ export const HEADER = {
   H_DESKTOP_OFFSET: 80 - 16,
 };
 
+export const DRAWER = {
+  D_DESKTOP_WIDTH: 402
+}
+
+export const SPACING = 8;
+
 export const NAV = {
   WIDTH: 284,
 };

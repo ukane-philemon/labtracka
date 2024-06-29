@@ -6,6 +6,8 @@ import type { To } from 'react-router-dom'
 // ----------------------------------------------------------------------
 
 export const RouterLink = forwardRef(
-  function RouterLinkForwardRef({ href, ...other }: { href: To }, ref: ForwardedRef<HTMLAnchorElement>): ReactNode {
+  function RouterLinkForwardRef(
+    { href, ...other }: { href: To },
+    ref: ForwardedRef<HTMLAnchorElement>): ReactNode {
     return <Link ref={ref} to={href} {...(other)} />
   });

@@ -5,7 +5,8 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import { Box, Typography } from '@mui/material';
 import type { ChangeEvent, MouseEvent, ReactNode } from "react";
 import { visuallyHidden, StyledTableCell } from '@components/styled';
-import { AllModelsEnum, type HeadLabelParameters, LaboratoryTableLabel, TableOrder, UserTableLabel } from "@interface";
+import type { HeadLabelParameters } from "@interface";
+import { TableOrder } from "@interface";
 import { capitalizeFirstLetter } from '@components/utils';
 
 
@@ -43,28 +44,32 @@ export function TableHeadProps(
           />
         </StyledTableCell>
 
-        {headLabel.map((headCell) => (
-          <StyledTableCell
-            align='center'
-            id={headCell.id}
-            key={headCell.id}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              hideSortIcon
-              onClick={onSort(headCell.id)}
+        {headLabel.map((headCell) => {
+          if (headCell.hide) { return }
+
+          return (
+            <StyledTableCell
+              align='center'
+              id={headCell.id}
+              key={headCell.id}
+              sortDirection={orderBy === headCell.id ? order : false}
             >
-              <Typography>{headCell.label ?? capitalizeFirstLetter(headCell.id)}</Typography>
-              {orderBy === headCell.id && (
-                <Box sx={{ ...visuallyHidden }}>
-                  {order === TableOrder.DESC ? 'sorted descending' : 'sorted ascending'}
-                </Box>
-              )}
-            </TableSortLabel>
-          </StyledTableCell>
-        ))}
+              <TableSortLabel
+                active={orderBy === headCell.id}
+                direction={orderBy === headCell.id ? order : 'asc'}
+                hideSortIcon
+                onClick={onSort(headCell.id)}
+              >
+                <Typography>{headCell.label ?? capitalizeFirstLetter(headCell.id)}</Typography>
+                {orderBy === headCell.id && (
+                  <Box sx={{ ...visuallyHidden }}>
+                    {order === TableOrder.DESC ? 'sorted descending' : 'sorted ascending'}
+                  </Box>
+                )}
+              </TableSortLabel>
+            </StyledTableCell>
+          )
+        })}
         <StyledTableCell />
       </TableRow>
     </TableHead>

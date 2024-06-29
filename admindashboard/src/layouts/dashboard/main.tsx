@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box';
 import type { ReactNode } from 'react';
 import type { SxProps } from '@mui/material';
+import type { Theme } from '@mui/system';
 import { useResponsive } from '@components/hooks';
-import { NAV } from '@components/constants';
-import type { Theme } from '@interface';
+import { HEADER, NAV, SPACING } from '@components/constants';
 
 
 // ----------------------------------------------------------------------
@@ -20,11 +20,11 @@ export default function Main({ children, sx, ...other }: {
         minHeight: 1,
         display: 'flex',
         flexDirection: 'column',
-        // py: `${HEADER.H_MOBILE + SPACING}px`,
+        py: `${(HEADER.H_MOBILE + SPACING).toString()}px`,
         ...(lgUp && {
           px: 2,
-          //   // py: `${HEADER.H_DESKTOP + SPACING}px`,
-          width: `calc(100% - ${NAV.WIDTH}px)`,
+          py: `${(HEADER.H_DESKTOP + SPACING).toString()}px`,
+          width: `calc(100% - ${(NAV.WIDTH).toString()}px)`,
         }),
         ...sx,
       }}

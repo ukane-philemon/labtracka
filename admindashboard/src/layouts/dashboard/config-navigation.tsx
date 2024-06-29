@@ -2,15 +2,15 @@ import type { ReactNode } from 'react';
 import { AccountDesignation } from '@interface';
 import type { NavParameter } from '@interface'
 import adminAccount from '@assets/icons/admin_account.svg'
-import cardPayment from '@assets/icons/card_payment.svg'
 import doubleSlider from '@assets/icons/double_slider.svg'
 import home from '@assets/icons/home.svg'
-import { ReactSVGHelper } from '@components/helper';
+import laboratory from '@assets/icons/laboratory.svg'
+import { SvgColor } from '@components/utils';
 
 // ----------------------------------------------------------------------
 
-const icon = (name: string): ReactNode => (
-  <ReactSVGHelper src={name} />
+const icon = (src: string): ReactNode => (
+  <SvgColor src={src} sx={{ width: 1, height: 1 }} />
 );
 
 export const navConfig = (accountDesignation?: AccountDesignation): NavParameter[] => {
@@ -28,14 +28,14 @@ export const navConfig = (accountDesignation?: AccountDesignation): NavParameter
       return [
         ...defaultNav,
         {
+          title: 'laboratory',
+          path: '/laboratory',
+          icon: icon(laboratory),
+        },
+        {
           title: 'admin',
           path: '/admin',
           icon: icon(adminAccount),
-        },
-        {
-          title: 'payments',
-          path: '/payments',
-          icon: icon(cardPayment),
         },
         {
           title: 'settings',

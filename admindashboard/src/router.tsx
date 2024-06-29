@@ -4,9 +4,10 @@ import { DrawerLayout } from '@layouts/dashboard';
 
 export const DashboardPage = lazy(() => import('@pages/dashboard'));
 export const AdminPage = lazy(() => import('@pages/admin'));
-export const SettingsPage = lazy(() => import('@pages/settings'));
-export const PaymentsPage = lazy(() => import('@pages/payments'));
+export const LaboratoryPage = lazy(() => import('@pages/laboratory'))
 export const Page404 = lazy(() => import('@pages/page-not-found'));
+export const PaymentsPage = lazy(() => import('@pages/payments'));
+export const SettingsPage = lazy(() => import('@pages/settings'));
 
 export const Router = (): ReactElement | null => useRoutes([
   {
@@ -19,9 +20,9 @@ export const Router = (): ReactElement | null => useRoutes([
     ),
     children: [
       { element: <DashboardPage />, index: true },
+      { path: 'laboratory', element: <LaboratoryPage /> },
       { path: 'admin', element: <AdminPage /> },
       { path: 'settings', element: <SettingsPage /> },
-      { path: 'payments', element: <PaymentsPage /> },
     ],
   },
   {

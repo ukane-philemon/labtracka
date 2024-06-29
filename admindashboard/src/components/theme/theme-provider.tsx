@@ -1,9 +1,13 @@
 "use client"
-import type {ReactNode} from 'react';
-import { useMemo} from 'react';
+import type { ReactNode } from 'react';
+import { useMemo } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import type { ThemeOptions} from '@mui/material/styles';
-import {createTheme, ThemeProvider as MUIThemeProvider} from '@mui/material/styles';
+import type { ThemeOptions } from '@mui/material/styles';
+import {
+  createTheme,
+  Experimental_CssVarsProvider as CssVarsProvider,
+  ThemeProvider as MUIThemeProvider
+} from '@mui/material/styles';
 import type { Theme } from '@interface';
 import { palette } from './palette';
 import { shadows } from './shadows';
@@ -11,10 +15,10 @@ import { overrides } from './overrides';
 import { typography } from './typography';
 import { customShadows } from './custom-shadows';
 
-export function ThemeProvider({ children }: {children: ReactNode}): ReactNode {
+export function ThemeProvider({ children }: { children: ReactNode }): ReactNode {
 
   const memoizedValue = useMemo<ThemeOptions>(
-    ()  => ({
+    () => ({
       palette,
       typography,
       shadows: shadows(),
@@ -29,9 +33,11 @@ export function ThemeProvider({ children }: {children: ReactNode}): ReactNode {
   theme.components = overrides(theme);
 
   return (
-    <MUIThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
-    </MUIThemeProvider>
+    <CssVarsProvider>
+      <MUIThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </MUIThemeProvider>
+    </CssVarsProvider>
   );
 }

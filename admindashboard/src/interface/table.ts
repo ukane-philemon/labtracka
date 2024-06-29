@@ -20,6 +20,8 @@ export interface HeadLabelParameters {
   id: string;
   label?: string;
   sx?: SxProps;
+  hide: boolean,
+  edit: boolean,
 }
 
 export enum ExtendedModelEnum {

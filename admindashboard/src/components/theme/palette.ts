@@ -66,7 +66,7 @@ export const warning = {
 export const error = {
   lighter: '#FFE9D5',
   light: '#FFAC82',
-  main: '#F32013',
+  main: '#ED2A2A',
   dark: '#B71D18',
   darker: '#7A0916',
   contrastText: '#FFFFFF',
@@ -78,7 +78,7 @@ export const common = {
 };
 
 export const action = {
-  hover: alpha(grey[500], 0.08),
+  hover: alpha(primary.light, 0.08),
   selected: alpha(grey[500], 0.16),
   disabled: alpha(grey[500], 0.8),
   disabledBackground: alpha(grey[500], 0.24),

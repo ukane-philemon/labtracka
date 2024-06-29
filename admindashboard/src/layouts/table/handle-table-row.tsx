@@ -1,4 +1,4 @@
-import type { ChangeEvent, HTMLInputTypeAttribute, MouseEvent, ReactNode } from "react";
+import type { ChangeEvent, MouseEvent, ReactNode } from "react";
 import { useState } from "react";
 import {
   Button,
@@ -8,48 +8,53 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Grid,
   IconButton,
   MenuItem,
   Popover,
+  Stack,
   TableCell,
   TableRow,
+  TextField,
   Typography
 } from "@mui/material";
 import { HiOutlineTrash } from "react-icons/hi";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { SlOptionsVertical } from "react-icons/sl";
 import editOutline from '@assets/icons/edit_outline.svg'
-import { ReactSVGHelper } from "@components/helper";
 import type { HandleTableEnum, HandleTableTypes, HeadLabelParameters } from "@interface";
-import { fToNow } from "@components/utils";
+import { capitalizeFirstLetter, fToNow } from "@components/utils";
+import { StyledButton, StyledSvgBox } from "@components/styled";
+import { DatePickerHelper, DrawerHelper } from "@components/helper";
+import { Scrollbar } from "@components/scrollbar";
 
-interface ModelTableCellParameters {
-  content?: string | number | ReactNode;
-  key: number;
-  type?: 'boolean'
-}
+// interface ModelTableCellParameters {
+//   content?: string | number | ReactNode;
+//   key: number;
+//   type?: 'boolean'
+// }
 
-interface ViewTableItems {
-  // content?: TableContentType;
-  key: number;
-  title: string;
-}
+// interface ViewTableItems {
+//   // content?: TableContentType;
+//   key: number;
+//   title: string;
+// }
 
-interface FormEditItems {
-  error: string;
-  label: string;
-  key: number;
-  name: string
-  formType?: HTMLInputTypeAttribute;
-  value: unknown;
-}
+// interface FormEditItems {
+//   error: string;
+//   label: string;
+//   key: number;
+//   name: string
+//   formType?: HTMLInputTypeAttribute;
+//   value: unknown;
+// }
 
-interface FormErrorParameters {
-  courseCode: string;
-  creditUnit: string;
-  name: string;
-  title: string;
-}
+// interface FormErrorParameters {
+//   courseCode: string;
+//   creditUnit: string;
+//   name: string;
+//   title: string;
+// }
 
 interface OpenState {
   delete: boolean;
@@ -58,10 +63,10 @@ interface OpenState {
   view: boolean;
 }
 
-enum DialogOptions {
-  Edit = 'Edit',
-  View = 'View',
-}
+// enum DialogOptions {
+//   Edit = 'Edit',
+//   View = 'View',
+// }
 
 export function HandleTableRow({
   selected, data, handleClick, headLabel, modelType
@@ -74,24 +79,22 @@ export function HandleTableRow({
 }): ReactNode {
   const initialOpen = { popover: null, edit: false, delete: false, view: false }
 
-  const initialFormError: FormErrorParameters = {
-    name: '', courseCode: '', creditUnit: '', title: ''
-  }
+  // const initialFormError: FormErrorParameters = {
+  //   name: '', courseCode: '', creditUnit: '', title: ''
+  // }
 
   const [open, setOpen] = useState<OpenState>(initialOpen);
-
-  const formError = initialFormError
 
   const handleCloseMenu = (): void => {
     setOpen({ ...open, popover: null });
   };
 
   const handleDelete = (): void => {
-    setOpen({ ...open, delete: !open.delete })
+    setOpen({ ...initialOpen, delete: !open.delete })
   }
 
   const handleEdit = (): void => {
-    setOpen({ ...open, edit: !open.edit })
+    setOpen({ ...initialOpen, edit: !open.edit })
   }
 
   const handleOpenMenu = (event: MouseEvent<HTMLButtonElement>): void => {
@@ -99,10 +102,20 @@ export function HandleTableRow({
   };
 
   const handleView = (): void => {
-    setOpen({ ...open, view: !open.view })
+    setOpen({ ...initialOpen, view: !open.view })
+  }
+
+  const handleEditClick = (): void => {
+    // setOpen({})
+  }
+
+  const handleCheckbox = (event: ChangeEvent<HTMLInputElement>): void => {
+    handleClick(event, id.toString());
   }
 
   const { id } = data
+
+  const modelName: string = modelType.toString();
 
   return (
     <>
@@ -111,14 +124,12 @@ export function HandleTableRow({
           <Checkbox
             checked={selected}
             disableRipple
-            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              handleClick(event, id);
-            }}
+            onChange={handleCheckbox}
           />
 
         </TableCell>
 
-        <Logic dataModel={data} modelType={modelType} headLabel={headLabel} />
+        <TableCellDataView dataModel={data} headLabel={headLabel} />
         <TableCell align="right">
           <IconButton onClick={handleOpenMenu}>
             <SlOptionsVertical size={20} />
@@ -134,11 +145,11 @@ export function HandleTableRow({
         open={open.delete}
       >
         <DialogTitle id="alert-dialog-title">
-          Delete {modelType}
+          Delete {modelName}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to this <Typography>{modelType}</Typography>
+            Are you sure you want to this <Typography>{modelName}</Typography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -152,7 +163,31 @@ export function HandleTableRow({
       </Dialog>
 
       {/*Edit Dialog      */}
-      <Dialog
+      <DrawerHelper
+        openPanel={open.edit}
+        handleClosePanel={handleEdit} title={`Modify ${modelName}`}
+        aria-describedby="alert-dialog-description"
+        aria-labelledby="alert-dialog-title"
+      >
+        <Stack gap={3} sx={{
+          height: "100%",
+          justifyContent: "space-between",
+        }}>
+          <HandleEditDrawer
+            dataModel={data}
+            headLabel={headLabel}
+          />
+
+          <StyledButton onClick={handleEditClick}>
+            Modify
+          </StyledButton>
+
+          <Button onClick={handleEditClick} variant="outlined">
+            Hide
+          </Button>
+        </Stack>
+      </DrawerHelper>
+      {/* <Dialog
         aria-describedby="alert-dialog-description"
         aria-labelledby="alert-dialog-title"
         onClose={handleEdit}
@@ -176,30 +211,27 @@ export function HandleTableRow({
             Save
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
 
       {/* View Dialog      */}
-      <Dialog
-        aria-describedby="alert-dialog-description"
-        aria-labelledby="alert-dialog-title"
-        onClose={handleView}
-        open={open.view}
+      <DrawerHelper
+        openPanel={open.view}
+        handleClosePanel={handleView}
+        title={`View ${modelName}`}
       >
-        <DialogTitle id="alert-dialog-title">
-          View {modelType}
-        </DialogTitle>
-        <Logic
-          dataModel={data}
-          headLabel={headLabel}
-          dialogOption={DialogOptions.View}
-          modelType={modelType}
-        />
-        <DialogActions>
-          <Button onClick={handleView}>
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
+
+        <Stack gap={3} sx={{
+          height: "100%",
+          justifyContent: "space-between",
+        }}>
+
+          <HandleViewDrawer
+            dataModel={data}
+            headLabel={headLabel}
+          />
+
+        </Stack>
+      </DrawerHelper>
 
       <Popover
         anchorEl={open.popover as Element}
@@ -214,7 +246,7 @@ export function HandleTableRow({
         </MenuItem>
 
         <MenuItem onClick={handleEdit}>
-          <ReactSVGHelper src={editOutline} margin='0 8px 0 0' />
+          <StyledSvgBox src={editOutline} sx={{ height: 20, width: 20 }} />
           Edit
         </MenuItem>
 
@@ -228,51 +260,102 @@ export function HandleTableRow({
   )
 }
 
-function Logic(
+const TableCellDataView = (
   {
     dataModel,
     headLabel,
-    dialogOption,
-    formError,
-    handleFormData,
   }: {
     dataModel: HandleTableTypes;
     headLabel: HeadLabelParameters[];
-    dialogOption?: DialogOptions;
-    formError?: FormErrorParameters;
-    handleFormData?: (event: ChangeEvent<HTMLInputElement>) => void;
-    modelType: HandleTableEnum;
-  }): ReactNode {
-  console.log('====================================');
-  console.log(dataModel, headLabel);
-  console.log('====================================');
+  }): ReactNode => (
+  <>
+    {
+      headLabel.map(({ id, hide }) => {
 
-  return (
-    <>
+        if (hide) { return }
+
+
+        let item = dataModel[id] as unknown
+
+        // check if value is a date time
+        if (Object.prototype.toString.call(item) === '[object Date]') {
+          item = fToNow(item as Date)
+        }
+
+        return (
+          <TableCell key={id}
+            align='center'
+            component="th"
+            padding="none" scope="row"
+          >
+            {item as ReactNode}
+          </TableCell>
+        )
+      })
+    }
+  </>
+)
+
+const HandleEditDrawer = ({ dataModel, headLabel }: {
+  dataModel: HandleTableTypes,
+  headLabel: HeadLabelParameters[],
+}): ReactNode => (
+  <Scrollbar sx={{ height: "60vh" }}>
+    <Stack pt={1} gap={3} sx={{ width: "95%" }}>
       {
-        headLabel.map(({ id }) => {
-           
-          let item: unknown = dataModel[id] as unknown
+        headLabel.map(({ id, label, edit }) => {
 
-          // check if value is a date time
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- it's totally fine
+          const item = dataModel[id] as any as unknown
+
+          if (Object.prototype.toString.call(item) === '[object Date]') {
+            return <DatePickerHelper key={id} value={item as Date} />
+          }
+          return <TextField
+            type={typeof item === "number" ? 'number' : undefined}
+            disabled={!edit}
+            key={id}
+            label={label ?? capitalizeFirstLetter(id)}
+            defaultValue={item}
+          />
+        })
+      }
+    </Stack>
+  </Scrollbar>
+)
+
+const HandleViewDrawer = ({ dataModel, headLabel }: {
+  dataModel: HandleTableTypes,
+  headLabel: HeadLabelParameters[],
+}): ReactNode => (
+  <Scrollbar sx={{ height: "80vh" }}>
+    <Grid container spacing={3.5}>
+      {
+        headLabel.map(({ id, label }) => {
+
+          let item = dataModel[id] as unknown
           if (Object.prototype.toString.call(item) === '[object Date]') {
             item = fToNow(item as Date)
           }
-
           return (
-            <TableCell key={id}
-              align='center'
-              component="th"
-             padding="none" scope="row"
-            >
-              {item}
-            </TableCell>
+            <Grid item key={id} xs={6} sx={{
+              margin: 0,
+              width: "100%"
+            }}>
+              <Typography>
+                {label ?? capitalizeFirstLetter(id)}
+              </Typography>
+              <Typography variant="subtitle2">
+                {item as ReactNode}
+              </Typography>
+            </Grid>
           )
         })
       }
-    </>
-  )
-}
+    </Grid>
+  </Scrollbar>
+)
+
 
 //   let data: HandleTableTypes
 //   let tableCell: ModelTableCellParameters[] | undefined;
