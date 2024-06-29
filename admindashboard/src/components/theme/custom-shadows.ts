@@ -1,9 +1,16 @@
-"use client"
-import { alpha } from '@mui/material/styles';
-import type { CustomShadowsInterface } from '@interface';
-import { grey, info, error, common, primary, success, warning, secondary } from './palette';
-
-
+"use client";
+import { alpha } from "@mui/material/styles";
+import type { CustomShadowsInterface } from "@interface";
+import {
+  grey,
+  info,
+  error,
+  common,
+  primary,
+  success,
+  warning,
+  secondary,
+} from "./palette";
 
 export function customShadows(): CustomShadowsInterface {
   const transparent = alpha(grey[500], 0.16);

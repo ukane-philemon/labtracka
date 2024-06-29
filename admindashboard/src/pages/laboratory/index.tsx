@@ -18,7 +18,7 @@ export default function LaboratoryPage(): ReactNode {
     setOpenDrawer(false);
   };
   const handleOpenDialog = (): void => {
-    handleCloseDrawer()
+    handleCloseDrawer();
     setOpenDialog(true);
   };
 
@@ -26,7 +26,7 @@ export default function LaboratoryPage(): ReactNode {
     setOpenDialog(false);
   };
 
-  const title = "Laboratory"
+  const title = "Laboratory";
   return (
     <>
       <Helmet>
@@ -34,28 +34,30 @@ export default function LaboratoryPage(): ReactNode {
       </Helmet>
 
       <Stack gap={3}>
-        <Stack direction='row' sx={{ justifyContent: "space-between" }}>
-          <Typography variant='h5'>{title}</Typography>
-          <StyledButton onClick={handleOpenDrawer} variant='contained'>
+        <Stack direction="row" sx={{ justifyContent: "space-between" }}>
+          <Typography variant="h5">{title}</Typography>
+          <StyledButton onClick={handleOpenDrawer} variant="contained">
             <Typography>Add New Laboratory</Typography>
           </StyledButton>
         </Stack>
         <LaboratoryTable />
 
-        <DrawerHelper openPanel={openDrawer} handleClosePanel={handleCloseDrawer} title="Add Laboratory">
-            <FormControl sx={{height: "100%"}}>
-
-              <Stack gap={2} pb={3} sx={{flexGrow: 1}}>
-                <TextField label="State" size="small" />
-                <TextField label="City" size="small" />
-                <TextField label="Street Name" size="small" />
-                <TextField label="Address Number" size="small" />
-              </Stack>
-                <StyledButton onClick={handleOpenDialog}>
-                  <Typography>Create Lab</Typography>
-                </StyledButton>
-            </FormControl>
-
+        <DrawerHelper
+          openPanel={openDrawer}
+          handleClosePanel={handleCloseDrawer}
+          title="Add Laboratory"
+        >
+          <FormControl sx={{ height: "100%" }}>
+            <Stack gap={2} pb={3} sx={{ flexGrow: 1 }}>
+              <TextField label="State" size="small" />
+              <TextField label="City" size="small" />
+              <TextField label="Street Name" size="small" />
+              <TextField label="Address Number" size="small" />
+            </Stack>
+            <StyledButton onClick={handleOpenDialog}>
+              <Typography>Create Lab</Typography>
+            </StyledButton>
+          </FormControl>
         </DrawerHelper>
 
         <SuccessDialog
@@ -63,9 +65,7 @@ export default function LaboratoryPage(): ReactNode {
           open={openDialog}
           handleClose={handleCloseDialog}
         />
-
       </Stack>
-
     </>
-  )
+  );
 }

@@ -1,24 +1,30 @@
-"use client"
-import type { ForwardedRef, ReactNode } from 'react';
-import { forwardRef, memo } from 'react';
-import Box from '@mui/material/Box';
-import type { SxProps, Theme } from '@mui/material/styles';
-import { StyledRootScrollbar, StyledScrollbar } from './styles';
+"use client";
+import type { ForwardedRef, ReactNode } from "react";
+import { forwardRef, memo } from "react";
+import Box from "@mui/material/Box";
+import type { SxProps, Theme } from "@mui/material/styles";
+import { StyledRootScrollbar, StyledScrollbar } from "./styles";
 
 interface ScrollbarInterface {
   children?: ReactNode;
-  sx?: SxProps<Theme>
+  sx?: SxProps<Theme>;
 }
 
 export const Scrollbar = forwardRef<HTMLElement, ScrollbarInterface>(
-  function ScrollbarForwardRef({ children, sx, ...other },
-    ref: ForwardedRef<HTMLElement>): ReactNode {
-    const userAgent = typeof navigator === 'undefined' ? 'SSR' : navigator.userAgent;
+  function ScrollbarForwardRef(
+    { children, sx, ...other },
+    ref: ForwardedRef<HTMLElement>,
+  ): ReactNode {
+    const userAgent =
+      typeof navigator === "undefined" ? "SSR" : navigator.userAgent;
 
-    const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+    const mobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        userAgent,
+      );
 
     return mobile ? (
-      <Box ref={ref} sx={{ overflow: 'auto', ...sx }} {...other}>
+      <Box ref={ref} sx={{ overflow: "auto", ...sx }} {...other}>
         {children}
       </Box>
     ) : (
@@ -35,8 +41,7 @@ export const Scrollbar = forwardRef<HTMLElement, ScrollbarInterface>(
         </StyledScrollbar>
       </StyledRootScrollbar>
     );
-  })
-
-
+  },
+);
 
 export default memo(Scrollbar);

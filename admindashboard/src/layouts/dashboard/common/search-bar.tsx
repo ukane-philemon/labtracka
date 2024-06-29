@@ -1,4 +1,12 @@
-import { Box, Button, ClickAwayListener, IconButton, Input, InputAdornment, Slide } from "@mui/material";
+import {
+  Box,
+  Button,
+  ClickAwayListener,
+  IconButton,
+  Input,
+  InputAdornment,
+  Slide,
+} from "@mui/material";
 import { useState } from "react";
 import type { ReactNode } from "react";
 import { MdSearch } from "react-icons/md";
@@ -36,7 +44,7 @@ export const SearchBar = (): ReactNode => {
                   <MdSearch color="#919EAB" size={20} />
                 </InputAdornment>
               }
-              sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
+              sx={{ mr: 1, fontWeight: "fontWeightBold" }}
             />
             <Button variant="contained" onClick={handleClose}>
               Search
@@ -45,5 +53,5 @@ export const SearchBar = (): ReactNode => {
         </Slide>
       </Box>
     </ClickAwayListener>
-  )
-}
+  );
+};

@@ -1,15 +1,15 @@
-import {useMemo} from 'react';
-import type {To} from 'react-router-dom';
-import {useNavigate} from 'react-router-dom';
+import { useMemo } from "react";
+import type { To } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // ----------------------------------------------------------------------
 
-export function useRouter(): useMemo<{
-  reload: () => void,
-  forward: () => void,
-  replace: (href: To) => void,
-  back: () => void,
-  push: (href: To) => void,
+export function useRouter(): typeof useMemo<{
+  reload: () => void;
+  forward: () => void;
+  replace: (href: To) => void;
+  back: () => void;
+  push: (href: To) => void;
 }> {
   const navigate = useNavigate();
 
@@ -28,9 +28,9 @@ export function useRouter(): useMemo<{
         navigate(href);
       },
       replace: (href: To) => {
-        navigate(href, {replace: true});
+        navigate(href, { replace: true });
       },
     }),
-    [navigate]
+    [navigate],
   );
 }

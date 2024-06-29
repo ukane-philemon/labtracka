@@ -14,16 +14,26 @@ import {
   TableCell,
   TableRow,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import { HiOutlineTrash } from "react-icons/hi";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { SlOptionsVertical } from "react-icons/sl";
-import editOutline from '@assets/icons/edit_outline.svg'
-import { type HandleTableEnum, type HandleTableTypes, type HeadLabelParameters, WarningOption } from "@interface";
+import editOutline from "@assets/icons/edit_outline.svg";
+import {
+  type HandleTableEnum,
+  type HandleTableTypes,
+  type HeadLabelParameters,
+  WarningOption,
+} from "@interface";
 import { capitalizeFirstLetter, fToNow } from "@components/utils";
 import { StyledButton } from "@components/styled";
-import { DatePickerHelper, DrawerHelper, PopoverHelper, SvgHelper } from "@components/helper";
+import {
+  DatePickerHelper,
+  DrawerHelper,
+  PopoverHelper,
+  SvgHelper,
+} from "@components/helper";
 import { Scrollbar } from "@components/scrollbar";
 import { WarningDialog } from "@components/dialogs";
 
@@ -37,7 +47,11 @@ interface OpenState {
 }
 
 export function HandleTableRow({
-  selected, data, handleClick, headLabel, modelType
+  selected,
+  data,
+  handleClick,
+  headLabel,
+  modelType,
 }: {
   data: HandleTableTypes;
   handleClick: (event: ChangeEvent<HTMLInputElement>, key: string) => void;
@@ -45,7 +59,7 @@ export function HandleTableRow({
   modelType: HandleTableEnum;
   selected: boolean;
 }): ReactNode {
-  const initialOpen: OpenState = { edit: false, delete: false, view: false }
+  const initialOpen: OpenState = { edit: false, delete: false, view: false };
 
   const [open, setOpen] = useState<OpenState>(initialOpen);
 
@@ -54,57 +68,62 @@ export function HandleTableRow({
   };
 
   const handleDelete = (): void => {
-    setOpen({ ...initialOpen, delete: !open.delete })
-  }
+    setOpen({ ...initialOpen, delete: !open.delete });
+  };
 
   const handleEdit = (): void => {
-    setOpen({ ...initialOpen, edit: !open.edit })
-  }
+    setOpen({ ...initialOpen, edit: !open.edit });
+  };
 
   const handleOpenMenu = (event: MouseEvent<HTMLButtonElement>): void => {
     setOpen({ ...open, popover: event.currentTarget });
   };
 
   const handleView = (): void => {
-    setOpen({ ...initialOpen, view: !open.view })
-  }
+    setOpen({ ...initialOpen, view: !open.view });
+  };
 
   const handleEditClick = (): void => {
     setOpen({
       ...open,
-      warningText: "Are you sure you want to hide this Lab? Users will not be able to view this lab when hidden."
-    })
-  }
+      warningText:
+        "Are you sure you want to hide this Lab? Users will not be able to view this lab when hidden.",
+    });
+  };
 
   const handleWarningClick = (option: WarningOption): void => {
-
     if (option === WarningOption.Yes) {
-      open.edit = false
+      open.edit = false;
     }
     setOpen({
       ...open,
-      warningText: undefined
-    })
-  }
+      warningText: undefined,
+    });
+  };
 
   const handleCheckbox = (event: ChangeEvent<HTMLInputElement>): void => {
     handleClick(event, id.toString());
-  }
+  };
 
-  const { id } = data
+  const { id } = data;
 
   const modelName: string = modelType.toString();
 
   return (
     <>
-      <TableRow hover key={id} role="checkbox" selected={selected} tabIndex={-1}>
+      <TableRow
+        hover
+        key={id}
+        role="checkbox"
+        selected={selected}
+        tabIndex={-1}
+      >
         <TableCell padding="checkbox">
           <Checkbox
             checked={selected}
             disableRipple
             onChange={handleCheckbox}
           />
-
         </TableCell>
 
         <TableCellDataView dataModel={data} headLabel={headLabel} />
@@ -122,43 +141,36 @@ export function HandleTableRow({
         onClose={handleDelete}
         open={open.delete}
       >
-        <DialogTitle id="alert-dialog-title">
-          Delete {modelName}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">Delete {modelName}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Are you sure you want to this <Typography>{modelName}</Typography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDelete}>
-            Cancel
-          </Button>
-          <Button onClick={handleDelete}>
-            Delete
-          </Button>
+          <Button onClick={handleDelete}>Cancel</Button>
+          <Button onClick={handleDelete}>Delete</Button>
         </DialogActions>
       </Dialog>
 
       {/*Edit Dialog      */}
       <DrawerHelper
         openPanel={open.edit}
-        handleClosePanel={handleEdit} title={`Modify ${modelName}`}
+        handleClosePanel={handleEdit}
+        title={`Modify ${modelName}`}
         aria-describedby="alert-dialog-description"
         aria-labelledby="alert-dialog-title"
       >
-        <Stack gap={3} sx={{
-          height: "100%",
-          justifyContent: "space-between",
-        }}>
-          <HandleEditDrawer
-            dataModel={data}
-            headLabel={headLabel}
-          />
+        <Stack
+          gap={3}
+          sx={{
+            height: "100%",
+            justifyContent: "space-between",
+          }}
+        >
+          <HandleEditDrawer dataModel={data} headLabel={headLabel} />
 
-          <StyledButton onClick={handleEditClick}>
-            Modify
-          </StyledButton>
+          <StyledButton onClick={handleEditClick}>Modify</StyledButton>
 
           <Button onClick={handleEditClick} variant="outlined">
             Hide
@@ -172,17 +184,14 @@ export function HandleTableRow({
         handleClosePanel={handleView}
         title={`View ${modelName}`}
       >
-
-        <Stack gap={3} sx={{
-          height: "100%",
-          justifyContent: "space-between",
-        }}>
-
-          <HandleViewDrawer
-            dataModel={data}
-            headLabel={headLabel}
-          />
-
+        <Stack
+          gap={3}
+          sx={{
+            height: "100%",
+            justifyContent: "space-between",
+          }}
+        >
+          <HandleViewDrawer dataModel={data} headLabel={headLabel} />
         </Stack>
       </DrawerHelper>
 
@@ -197,19 +206,19 @@ export function HandleTableRow({
           {
             icon: <SvgHelper src={editOutline} />,
             title: "edit",
-            onClick: handleEdit
+            onClick: handleEdit,
           },
           {
-            icon: <HiOutlineTrash size={20} style={{ color: 'red' }} />,
+            icon: <HiOutlineTrash size={20} style={{ color: "red" }} />,
             title: "delete",
             onClick: handleDelete,
-            color: "error.main"
-          }
+            color: "error.main",
+          },
         ]}
         anchorEl={open.popover}
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        anchorOrigin={{ vertical: "top", horizontal: "left" }}
         onClose={handleCloseMenu}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        transformOrigin={{ vertical: "top", horizontal: "right" }}
       />
 
       <WarningDialog
@@ -218,102 +227,102 @@ export function HandleTableRow({
         handleClick={handleWarningClick}
       />
     </>
-
-  )
+  );
 }
 
-const TableCellDataView = (
-  {
-    dataModel,
-    headLabel,
-  }: {
-    dataModel: HandleTableTypes;
-    headLabel: HeadLabelParameters[];
-  }): ReactNode => (
+const TableCellDataView = ({
+  dataModel,
+  headLabel,
+}: {
+  dataModel: HandleTableTypes;
+  headLabel: HeadLabelParameters[];
+}): ReactNode => (
   <>
-    {
-      headLabel.map(({ id, hide }) => {
+    {headLabel.map(({ id, hide }) => {
+      if (hide) {
+        return;
+      }
 
-        if (hide) { return }
+      let item = dataModel[id] as unknown;
 
+      // check if value is a date time
+      if (Object.prototype.toString.call(item) === "[object Date]") {
+        item = fToNow(item as Date);
+      }
 
-        let item = dataModel[id] as unknown
-
-        // check if value is a date time
-        if (Object.prototype.toString.call(item) === '[object Date]') {
-          item = fToNow(item as Date)
-        }
-
-        return (
-          <TableCell key={id}
-            align='center'
-            component="th"
-            padding="none" scope="row"
-          >
-            {item as ReactNode}
-          </TableCell>
-        )
-      })
-    }
+      return (
+        <TableCell
+          key={id}
+          align="center"
+          component="th"
+          padding="none"
+          scope="row"
+        >
+          {item as ReactNode}
+        </TableCell>
+      );
+    })}
   </>
-)
+);
 
-const HandleEditDrawer = ({ dataModel, headLabel }: {
-  dataModel: HandleTableTypes,
-  headLabel: HeadLabelParameters[],
+const HandleEditDrawer = ({
+  dataModel,
+  headLabel,
+}: {
+  dataModel: HandleTableTypes;
+  headLabel: HeadLabelParameters[];
 }): ReactNode => (
   <Scrollbar sx={{ height: "60vh" }}>
     <Stack pt={1} gap={3} sx={{ width: "95%" }}>
-      {
-        headLabel.map(({ id, label, edit }) => {
+      {headLabel.map(({ id, label, edit }) => {
+        const item = dataModel[id] as any as unknown;
 
-           
-          const item = dataModel[id] as any as unknown
-
-          if (Object.prototype.toString.call(item) === '[object Date]') {
-            return <DatePickerHelper key={id} value={item as Date} />
-          }
-          return <TextField
-            type={typeof item === "number" ? 'number' : undefined}
+        if (Object.prototype.toString.call(item) === "[object Date]") {
+          return <DatePickerHelper key={id} value={item as Date} />;
+        }
+        return (
+          <TextField
+            type={typeof item === "number" ? "number" : undefined}
             disabled={!edit}
             key={id}
             label={label ?? capitalizeFirstLetter(id)}
             defaultValue={item}
           />
-        })
-      }
+        );
+      })}
     </Stack>
   </Scrollbar>
-)
+);
 
-const HandleViewDrawer = ({ dataModel, headLabel }: {
-  dataModel: HandleTableTypes,
-  headLabel: HeadLabelParameters[],
+const HandleViewDrawer = ({
+  dataModel,
+  headLabel,
+}: {
+  dataModel: HandleTableTypes;
+  headLabel: HeadLabelParameters[];
 }): ReactNode => (
   <Scrollbar sx={{ height: "80vh" }}>
     <Grid container spacing={3.5}>
-      {
-        headLabel.map(({ id, label }) => {
-
-          let item = dataModel[id] as unknown
-          if (Object.prototype.toString.call(item) === '[object Date]') {
-            item = fToNow(item as Date)
-          }
-          return (
-            <Grid item key={id} xs={6} sx={{
+      {headLabel.map(({ id, label }) => {
+        let item = dataModel[id] as unknown;
+        if (Object.prototype.toString.call(item) === "[object Date]") {
+          item = fToNow(item as Date);
+        }
+        return (
+          <Grid
+            item
+            key={id}
+            xs={6}
+            sx={{
               margin: 0,
-              width: "100%"
-            }}>
-              <Typography>
-                {label ?? capitalizeFirstLetter(id)}
-              </Typography>
-              <Typography variant="subtitle2">
-                {item as ReactNode}
-              </Typography>
-            </Grid>
-          )
-        })
-      }
+              width: "100%",
+            }}
+          >
+            <Typography>{label ?? capitalizeFirstLetter(id)}</Typography>
+            <Typography variant="subtitle2">{item as ReactNode}</Typography>
+          </Grid>
+        );
+      })}
     </Grid>
   </Scrollbar>
-)
+);

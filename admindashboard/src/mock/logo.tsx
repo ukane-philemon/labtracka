@@ -1,13 +1,19 @@
-import { type ForwardedRef, forwardRef } from 'react';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import { type SxProps, type Theme, useTheme } from '@mui/material/styles';
-import { RouterLink } from '@components/utils';
-
+import { type ForwardedRef, forwardRef } from "react";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
+import { RouterLink } from "@components/utils";
 
 // ----------------------------------------------------------------------
 
-export const MockLogo = forwardRef(function LogoForwardRef({ disabledLink = false, sx, ...other }: { disabledLink?: boolean, sx?: SxProps<Theme> }, ref: ForwardedRef<HTMLAnchorElement>) {
+export const MockLogo = forwardRef(function LogoForwardRef(
+  {
+    disabledLink = false,
+    sx,
+    ...other
+  }: { disabledLink?: boolean; sx?: SxProps<Theme> },
+  ref: ForwardedRef<HTMLAnchorElement>,
+) {
   const theme = useTheme();
 
   const PRIMARY_LIGHT = theme.palette.primary.light;
@@ -33,12 +39,17 @@ export const MockLogo = forwardRef(function LogoForwardRef({ disabledLink = fals
       sx={{
         width: 40,
         height: 40,
-        display: 'inline-flex',
+        display: "inline-flex",
         ...sx,
       }}
       {...other}
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 512 512">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        height="100%"
+        viewBox="0 0 512 512"
+      >
         <defs>
           <linearGradient id="BG1" x1="100%" x2="50%" y1="9.946%" y2="50%">
             <stop offset="0%" stopColor={PRIMARY_DARK} />
@@ -79,7 +90,7 @@ export const MockLogo = forwardRef(function LogoForwardRef({ disabledLink = fals
   }
 
   return (
-    <Link component={RouterLink} href="/" sx={{ display: 'contents' }}>
+    <Link component={RouterLink} href="/" sx={{ display: "contents" }}>
       {logo}
     </Link>
   );

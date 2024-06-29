@@ -1,9 +1,7 @@
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
-import { Paper, Typography } from '@mui/material';
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
+import { Paper, Typography } from "@mui/material";
 import type { ReactNode } from "react";
-
-
 
 export function TableNoData({ query }: { query: string }): ReactNode {
   return (
@@ -11,7 +9,7 @@ export function TableNoData({ query }: { query: string }): ReactNode {
       <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
         <Paper
           sx={{
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
           <Typography paragraph variant="h6">

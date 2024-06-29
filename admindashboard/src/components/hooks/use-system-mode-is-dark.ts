@@ -1,21 +1,21 @@
-import {useColorScheme} from "@mui/material/styles";
+import { useColorScheme } from "@mui/material/styles";
 
 export function useSystemModeIsDark(): boolean {
-  const {mode, systemMode} = useColorScheme();
-  
+  const { mode, systemMode } = useColorScheme();
+
   switch (mode) {
-    case "dark": 
-      return true
+    case "dark":
+      return true;
     case undefined:
-    case 'light': 
-      return false
-    case 'system':
+    case "light":
+      return false;
+    case "system":
       switch (systemMode) {
-        case "dark": 
-          return true
-        case 'light':
+        case "dark":
+          return true;
+        case "light":
         case undefined:
-          return  false
-      }    
+          return false;
+      }
   }
 }

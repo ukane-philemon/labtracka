@@ -9,10 +9,10 @@ export interface NavParameter {
 export enum Query {
   Up = 1,
   Down = 2,
-  Between = 3
+  Between = 3,
 }
 
 export enum WarningOption {
   Yes = "Yes",
-  No = "No"
+  No = "No",
 }

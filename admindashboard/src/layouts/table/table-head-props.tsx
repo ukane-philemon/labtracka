@@ -1,42 +1,41 @@
-import Checkbox from '@mui/material/Checkbox';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import { Box, Typography } from '@mui/material';
+import Checkbox from "@mui/material/Checkbox";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import TableSortLabel from "@mui/material/TableSortLabel";
+import { Box, Typography } from "@mui/material";
 import type { ChangeEvent, MouseEvent, ReactNode } from "react";
-import { visuallyHidden, StyledTableCell } from '@components/styled';
+import { visuallyHidden, StyledTableCell } from "@components/styled";
 import type { HeadLabelParameters } from "@interface";
 import { TableOrder } from "@interface";
-import { capitalizeFirstLetter } from '@components/utils';
+import { capitalizeFirstLetter } from "@components/utils";
 
-
-export function TableHeadProps(
-  {
-    order,
-    orderBy,
-    rowCount,
-    headLabel,
-    numSelected,
-    onRequestSort,
-    onSelectAllClick
-  }: {
-    order: TableOrder,
-    orderBy: string,
-    rowCount: number,
-    headLabel: HeadLabelParameters[],
-    numSelected: number,
-    onRequestSort: (event: MouseEvent, id: string) => void,
-    onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void
-  }): ReactNode {
-  const onSort = (property: string) => (event: MouseEvent): void => {
-    onRequestSort(event, property);
-  };
-
+export function TableHeadProps({
+  order,
+  orderBy,
+  rowCount,
+  headLabel,
+  numSelected,
+  onRequestSort,
+  onSelectAllClick,
+}: {
+  order: TableOrder;
+  orderBy: string;
+  rowCount: number;
+  headLabel: HeadLabelParameters[];
+  numSelected: number;
+  onRequestSort: (event: MouseEvent, id: string) => void;
+  onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
+}): ReactNode {
+  const onSort =
+    (property: string) =>
+    (event: MouseEvent): void => {
+      onRequestSort(event, property);
+    };
 
   return (
     <TableHead>
       <TableRow>
-        <StyledTableCell padding='checkbox'>
+        <StyledTableCell padding="checkbox">
           <Checkbox
             checked={rowCount > 0 && numSelected === rowCount}
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -45,30 +44,36 @@ export function TableHeadProps(
         </StyledTableCell>
 
         {headLabel.map((headCell) => {
-          if (headCell.hide) { return }
+          if (headCell.hide) {
+            return;
+          }
 
           return (
             <StyledTableCell
-              align='center'
+              align="center"
               id={headCell.id}
               key={headCell.id}
               sortDirection={orderBy === headCell.id ? order : false}
             >
               <TableSortLabel
                 active={orderBy === headCell.id}
-                direction={orderBy === headCell.id ? order : 'asc'}
+                direction={orderBy === headCell.id ? order : "asc"}
                 hideSortIcon
                 onClick={onSort(headCell.id)}
               >
-                <Typography>{headCell.label ?? capitalizeFirstLetter(headCell.id)}</Typography>
+                <Typography>
+                  {headCell.label ?? capitalizeFirstLetter(headCell.id)}
+                </Typography>
                 {orderBy === headCell.id && (
                   <Box sx={{ ...visuallyHidden }}>
-                    {order === TableOrder.DESC ? 'sorted descending' : 'sorted ascending'}
+                    {order === TableOrder.DESC
+                      ? "sorted descending"
+                      : "sorted ascending"}
                   </Box>
                 )}
               </TableSortLabel>
             </StyledTableCell>
-          )
+          );
         })}
         <StyledTableCell />
       </TableRow>

@@ -1,25 +1,31 @@
-import { type ReactNode, useEffect } from 'react';
+import { type ReactNode, useEffect } from "react";
 import {
-  Box, Divider, Drawer,
-  ListItemButton, Stack, Typography
-} from '@mui/material';
-import { alpha } from '@mui/material/styles';
-import { usePathname, useResponsive } from '@components/hooks';
-import { NAV } from '@components/constants';
-import { AccountDesignation, type NavParameter } from '@interface';
-import { RouterLink } from '@components/utils';
-import { navConfig } from './config-navigation';
+  Box,
+  Divider,
+  Drawer,
+  ListItemButton,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import { usePathname, useResponsive } from "@components/hooks";
+import { NAV } from "@components/constants";
+import { AccountDesignation, type NavParameter } from "@interface";
+import { RouterLink } from "@components/utils";
+import { navConfig } from "./config-navigation";
 
 // ----------------------------------------------------------------------
 
-export default function Nav(
-  {
-    openNav, onCloseNav
-  }: { openNav: boolean, onCloseNav: () => void }
-): ReactNode {
+export default function Nav({
+  openNav,
+  onCloseNav,
+}: {
+  openNav: boolean;
+  onCloseNav: () => void;
+}): ReactNode {
   const pathname = usePathname();
 
-  const upLg = useResponsive('up', 'lg');
+  const upLg = useResponsive("up", "lg");
 
   useEffect(() => {
     if (openNav) {
@@ -29,13 +35,16 @@ export default function Nav(
   }, [pathname]);
 
   const renderAccount = (
-    <Stack px={5} sx={{
-      height: '102px',
-      justifyContent: 'center',
-      alignItems: 'flex-start'
-    }}>
-      <Typography variant='h6'>Peace Ewor</Typography>
-      <Typography variant='body2'>admin.lab1@gmail.com</Typography>
+    <Stack
+      px={5}
+      sx={{
+        height: "102px",
+        justifyContent: "center",
+        alignItems: "flex-start",
+      }}
+    >
+      <Typography variant="h6">Peace Ewor</Typography>
+      <Typography variant="body2">admin.lab1@gmail.com</Typography>
     </Stack>
   );
 
@@ -49,11 +58,9 @@ export default function Nav(
 
   const renderContent = (
     <Stack>
-
       {renderAccount}
       <Divider />
       {renderMenu}
-
     </Stack>
   );
 
@@ -68,7 +75,7 @@ export default function Nav(
         <Box
           sx={{
             height: 1,
-            position: 'fixed',
+            position: "fixed",
             width: NAV.WIDTH,
             borderRight: (theme) => `dashed 1px ${theme.palette.divider}`,
           }}
@@ -106,15 +113,15 @@ function NavItem({ item }: { item: NavParameter }): ReactNode {
       sx={{
         minHeight: 44,
         borderRadius: 0.75,
-        typography: 'body2',
-        color: 'text.secondary',
-        textTransform: 'capitalize',
-        fontWeight: 'fontWeightMedium',
+        typography: "body2",
+        color: "text.secondary",
+        textTransform: "capitalize",
+        fontWeight: "fontWeightMedium",
         ...(active && {
-          color: 'primary.main',
-          fontWeight: 'fontWeightSemiBold',
+          color: "primary.main",
+          fontWeight: "fontWeightSemiBold",
           bgcolor: (theme) => alpha(theme.palette.primary.main, 0.08),
-          '&:hover': {
+          "&:hover": {
             bgcolor: (theme) => alpha(theme.palette.primary.main, 0.16),
           },
         }),

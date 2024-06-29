@@ -4,13 +4,13 @@ import type {
   PaletteColor as MUIPaletteColor,
   PaletteOptions as MUIPaletteOptions,
   Theme as MUITheme,
-  TypeBackground as MUITypeBackground
+  TypeBackground as MUITypeBackground,
 } from "@mui/material/styles";
 import type {
   Typography as MUITypography,
-  TypographyOptions as MUITypographyOptions
+  TypographyOptions as MUITypographyOptions,
 } from "@mui/material/styles/createTypography";
-import type {CSSProperties} from "react";
+import type { CSSProperties } from "react";
 
 export interface BgBlurInterface {
   color?: string;
@@ -34,7 +34,6 @@ export interface BgGradientResponse {
   backgroundPosition?: string;
 }
 
-
 export interface Palette extends MUIPalette {
   background: Background;
   error: PaletteColor;
@@ -48,14 +47,14 @@ export interface PaletteOptions extends MUIPaletteOptions {
   background: {
     default: string;
     paper: string;
-    neutral: string
-  }
+    neutral: string;
+  };
 }
 
 export interface PaperInterface {
-  theme: Theme,
-  bgcolor: string,
-  dropdown: string
+  theme: Theme;
+  bgcolor: string;
+  dropdown: string;
 }
 
 export interface CustomShadowsInterface {
@@ -83,7 +82,7 @@ export interface PaletteColor extends MUIPaletteColor {
 }
 
 interface Background extends MUITypeBackground {
-  neutral: string
+  neutral: string;
 }
 
 export interface Typography extends MUITypography {
@@ -210,17 +209,17 @@ export interface Typography extends MUITypography {
     fontWeight: CSSProperties["fontWeight"];
     textTransForm: CSSProperties["textTransform"];
   };
-  fontWeightBold: CSSProperties["fontWeight"]
+  fontWeightBold: CSSProperties["fontWeight"];
 }
 
 export interface TypographyOptions extends MUITypographyOptions {
   fontSecondaryFamily: string;
-  fontWeightSemiBold: number
+  fontWeightSemiBold: number;
 }
 
 export interface Theme extends MUITheme {
-  typography: Typography
-  customShadows: CustomShadowsInterface
-  palette: Palette
-  components?: Components
+  typography: Typography;
+  customShadows: CustomShadowsInterface;
+  palette: Palette;
+  components?: Components;
 }

@@ -1,12 +1,16 @@
-import { useTheme } from '@mui/material/styles';
-import type { Breakpoint } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from "@mui/material/styles";
+import type { Breakpoint } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 // ----------------------------------------------------------------------
 
-export function useResponsive(query: "up" | "down" | "between", start: Breakpoint, end?: Breakpoint): boolean {
+export function useResponsive(
+  query: "up" | "down" | "between",
+  start: Breakpoint,
+  end?: Breakpoint,
+): boolean {
   const theme = useTheme();
-  let themeRange = theme.breakpoints.only(start)
+  let themeRange = theme.breakpoints.only(start);
 
   switch (query) {
     case "up":
@@ -17,9 +21,8 @@ export function useResponsive(query: "up" | "down" | "between", start: Breakpoin
       break;
 
     case "between":
-      if (end)
-        themeRange = theme.breakpoints.between(start, end);
-      break
+      if (end) themeRange = theme.breakpoints.between(start, end);
+      break;
   }
   return useMediaQuery(themeRange);
 }

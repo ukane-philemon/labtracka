@@ -5,8 +5,8 @@ export const HEADER = {
 };
 
 export const DRAWER = {
-  D_DESKTOP_WIDTH: 402
-}
+  D_DESKTOP_WIDTH: 402,
+};
 
 export const SPACING = 8;
 
@@ -15,5 +15,5 @@ export const NAV = {
 };
 
 export const SIDEPANEL = {
-  WIDTH: 400
-}
+  WIDTH: 400,
+};

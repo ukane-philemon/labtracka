@@ -48,8 +48,6 @@ import type { BgBlurInterface, Theme } from "@interface";
 //   }),
 // })}
 
-
-
 // export const MenuItem = (): {
 //   [x: string]: unknown;
 //   padding: string;
@@ -90,12 +88,10 @@ import type { BgBlurInterface, Theme } from "@interface";
 //   },
 // })};
 
-
-
 export function BgBlur(props?: BgBlurInterface): {
   position?: string;
   backgroundImage?: string;
-  '&:before'?: {
+  "&:before"?: {
     position: string;
     top: number;
     left: number;
@@ -116,31 +112,31 @@ export function BgBlur(props?: BgBlurInterface): {
   const blur = (props?.blur ?? 6).toString();
   const opacity = props?.opacity ?? 0.8;
   const imgUrl = props?.imgUrl;
-  const mode = useSystemModeIsDark()
+  const mode = useSystemModeIsDark();
 
-  return imgUrl ? {
-    position: 'relative',
-    // backgroundImage: `url(${IMAGE_PATH.concat(imgUrl)})`,
-    '&:before': {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      zIndex: 9,
-      content: '""',
-      width: '100%',
-      height: '100%',
-      backdropFilter: `blur(${blur}px)`,
-      WebkitBackdropFilter: `blur(${blur}px)`,
-      backgroundColor: alpha(color, opacity),
-    },
-  } : {
-    backdropFilter: `blur(${blur}px)`,
-    WebkitBackdropFilter: `blur(${blur}px)`,
-    backgroundColor: mode ? undefined :  alpha(color, opacity),
-  };
+  return imgUrl
+    ? {
+        position: "relative",
+        // backgroundImage: `url(${IMAGE_PATH.concat(imgUrl)})`,
+        "&:before": {
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 9,
+          content: '""',
+          width: "100%",
+          height: "100%",
+          backdropFilter: `blur(${blur}px)`,
+          WebkitBackdropFilter: `blur(${blur}px)`,
+          backgroundColor: alpha(color, opacity),
+        },
+      }
+    : {
+        backdropFilter: `blur(${blur}px)`,
+        WebkitBackdropFilter: `blur(${blur}px)`,
+        backgroundColor: mode ? undefined : alpha(color, opacity),
+      };
 }
-
-
 
 // export function BgGradient(props: BgGradientInterface): BgGradientResponse {
 //   const direction = props.direction || 'to bottom';
@@ -164,8 +160,6 @@ export function BgBlur(props?: BgBlurInterface): {
 //   };
 // }
 
-
-
 // export const textGradient = (value: string): {
 //   background: string,
 //   WebkitBackgroundClip: string,
@@ -176,24 +170,21 @@ export function BgBlur(props?: BgBlurInterface): {
 //   WebkitTextFillColor: 'transparent',
 // })
 
-
-
-
 export const hideScroll = {
   x: {
-    msOverflowStyle: 'none',
-    scrollbarWidth: 'none',
-    overflowX: 'scroll',
-    '&::-webkit-scrollbar': {
-      display: 'none',
+    msOverflowStyle: "none",
+    scrollbarWidth: "none",
+    overflowX: "scroll",
+    "&::-webkit-scrollbar": {
+      display: "none",
     },
   },
   y: {
-    msOverflowStyle: 'none',
-    scrollbarWidth: 'none',
-    overflowY: 'scroll',
-    '&::-webkit-scrollbar': {
-      display: 'none',
+    msOverflowStyle: "none",
+    scrollbarWidth: "none",
+    overflowY: "scroll",
+    "&::-webkit-scrollbar": {
+      display: "none",
     },
   },
 };
