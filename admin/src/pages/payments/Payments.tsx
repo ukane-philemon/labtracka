@@ -1,6 +1,6 @@
 // import React from 'react'
 import { Box } from '@mui/material'
-import TemporaryDrawer from './components/TemporaryDrawer'
+import TemporaryDrawer from '../../components/TemporaryDrawer'
 
 const Payments = () => {
   return (

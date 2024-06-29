@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
-import TablePagination from '@mui/material/TablePagination';
+// import TablePagination from '@mui/material/TablePagination';
 import IconButton from '@mui/material/IconButton';
 import { visuallyHidden } from '@mui/utils';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -44,7 +44,7 @@ function createData(
   };
 }
 
-// Sample data
+// SAMPLE
 const rows = [
   createData('ORDER001', 5000, 0.00, 5000, "31/08/2023"),
   createData('ORDER002', 5000, 0.00, 5000, "12/08/2023"),
@@ -164,20 +164,21 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   return (
     <TableHead sx={{backgroundColor: '#B4A3F824'}}>
       <TableRow>
-        <TableCell padding="normal"/>
+        <TableCell/>
         {headCells.map((headCell) => (
           <TableCell
             height={64}
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
-            sx={{fontSize: '16px', color: '#1A1A1A', fontWeight: '600', fontFamily: 'Open Sans'}}
+            sx={{fontSize: '16px', color: '#1A1A1A', fontWeight: '600', fontFamily: 'Open Sans', paddingX: '10px'}}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
+              sx={{paddingX: '100px'}}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
@@ -205,7 +206,7 @@ function FooterPagination(props: { count: number; page: number; rowsPerPage: num
   const { count, page, rowsPerPage, onPageChange } = props;
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 16px 0px 16px', fontSize: '16px', fontFamily: 'Open Sans'}}>
       <Box>
         Page {page + 1} of {Math.ceil(count / rowsPerPage)}
       </Box>
@@ -214,6 +215,7 @@ function FooterPagination(props: { count: number; page: number; rowsPerPage: num
           onClick={(event) => onPageChange(event, page - 1)}
           disabled={page === 0}
           aria-label="previous page"
+          sx={{fontSize: '18px'}}
         >
           <KeyboardArrowLeft />
           Previous
@@ -222,6 +224,7 @@ function FooterPagination(props: { count: number; page: number; rowsPerPage: num
           onClick={(event) => onPageChange(event, page + 1)}
           disabled={page >= Math.ceil(count / rowsPerPage) - 1}
           aria-label="next page"
+          sx={{fontSize: '18px'}}
         >
           Next
           <KeyboardArrowRight />

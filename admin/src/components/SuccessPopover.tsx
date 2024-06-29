@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import Success from '../assets/Succes.svg' 
+import Success from '../assets/icons/Succes.svg' 
 
 interface SuccessModalProps {
   open: boolean;
@@ -27,7 +27,7 @@ const CustomButton = styled(Button)({
   lineHeight: '16px',
   '&:hover': {
     backgroundColor: '#000066', // Change the background color on hover
-    color: '#FFD700', // Change the text color on hover
+    color: '#FFFFFF', // Change the text color on hover
   },
 });
 
@@ -56,7 +56,7 @@ const SuccessModal: React.FC<SuccessModalProps> = ({ open, onClose }) => {
         }}
       >
         <img src={Success} alt="Success" sx={{ width: '100%', height: '100%' }} />
-        <Typography id="success-modal-title" variant="h1" component="h1" color="#00004D" sx={{ fontSize: '20px', mt: 4 }}>
+        <Typography id="success-modal-title" variant="h6" component="h2" color="#00004D" sx={{ fontSize: '20px', mt: 4 }}>
           Success
         </Typography>
         <Typography id="success-modal-description" sx={{ mt: 2 }}>

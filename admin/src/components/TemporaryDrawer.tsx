@@ -8,27 +8,27 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import { NAV_LINKS, USER_INFO } from '../constants/Navigation';
+import { NAV_LINKS, USER_INFO } from './constants/Navigation';
 import { styled } from '@mui/material/styles'; // Import styled from MUI styles
 import ResponsiveGrid from './ResponsiveGrid';
 import BoxBasic from './BoxBasic';
 import BasicMenu from './BasicMenu';
 import EnhancedTable from './EnhancedTable';
-import dashboardIcon from '../assets/Home.svg';
-import testIcon from '../assets/test.svg';
-import orderIcon from '../assets/order.svg';
-import resultIcon from '../assets/result.svg';
-import paymentIcon from '../assets/wallet.svg';
-import settingIcon from '../assets/settings.svg';
+// import dashboardIcon from '../assets/Home.svg';
+// import testIcon from '../assets/test.svg';
+// import orderIcon from '../assets/order.svg';
+// import resultIcon from '../assets/result.svg';
+// import paymentIcon from '../assets/wallet.svg';
+// import settingIcon from '../assets/settings.svg';
 
-const iconMap: { [key: string]: string } = {
-  dashboardIcon,
-  testIcon,
-  orderIcon,
-  resultIcon,
-  paymentIcon,
-  settingIcon,
-};
+// const iconMap: { [key: string]: string } = {
+//   dashboardIcon,
+//   testIcon,
+//   orderIcon,
+//   resultIcon,
+//   paymentIcon,
+//   settingIcon,
+// };
 
 // Define a styled component for ListItemText to adjust typography
 const StyledListItemText = styled(ListItemText)(({ theme }) => ({
@@ -52,7 +52,7 @@ export default function TemporaryDrawer() {
           <ListItem key={link.key}>
             <ListItemButton component='a' href={link.href}  >
               <ListItemIcon>
-                <img src={iconMap[link.key]} width={22} height={22} />
+                {/* <img src={iconMap[link.key]} width={22} height={22} /> */}
               </ListItemIcon>
               <StyledListItemText primary={link.label}/>
             </ListItemButton>
